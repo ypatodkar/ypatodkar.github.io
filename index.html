@@ -3,213 +3,655 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yash Patodkar - Cover Letter & Resume</title>
+  <title>Yash Patodkar | Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Using Google Fonts: Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f7f7;
-      color: #333;
-      line-height: 1.6;
+    /* ====== Design System ====== */
+    :root{
+      --bg: #0b1020;
+      --panel: #0f172a;
+      --panel-2: #111a33;
+      --text: #e6edf3;
+      --muted: #9fb0c3;
+      --brand: #6ee7ff;
+      --brand-2: #7c3aed;
+      --ring: rgba(110,231,255,0.35);
+      --card: #0e1630;
+      --border-color: color-mix(in oklab, var(--text), transparent 88%);
+
+      --radius: 16px;
+      --space: clamp(8px, 1.2vw, 16px);
+      --shadow: 0 10px 30px rgba(6,12,30,0.35);
+      --shadow-brand: 0 10px 30px rgba(110, 231, 255, 0.15);
     }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 30px 20px;
-      background: #fff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      border-radius: 8px;
-      margin-top: 40px;
-      margin-bottom: 40px;
+    body.light{
+      --bg: #f7f9fc;
+      --panel: #ffffffcc;
+      --panel-2: #fff;
+      --text: #0f172a;
+      --muted: #5b6b85;
+      --brand: #2563eb;
+      --brand-2: #8b5cf6;
+      --ring: rgba(37,99,235,0.2);
+      --card: #ffffff;
+      --border-color: color-mix(in oklab, var(--text), transparent 90%);
+      --shadow: 0 10px 25px rgba(50, 60, 80, 0.1);
+      --shadow-brand: 0 10px 30px rgba(37, 99, 235, 0.1);
     }
 
-    h1, h2, h3 {
+    /* ====== Base & Scroll Animations ====== */
+    *{box-sizing:border-box}
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    
+    .animated-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .animated-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .container{
+      width:min(1100px, calc(100% - 2*var(--space)));
+      margin-inline:auto;
+    }
+
+    a{color:inherit; text-decoration:none}
+    img, svg{max-width:100%; display:block}
+    .section{padding: calc(var(--space)*6) 0}
+    .section-title{
+      font-size: clamp(28px, 2.4vw, 36px);
+      font-weight: 800;
+      text-align:center;
+      margin: 0 0 calc(var(--space)*4);
+    }
+
+    /* ====== Header / Nav ====== */
+    .header{
+      position: sticky; top:0; z-index: 100;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--panel), transparent 20%);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: calc(var(--space)*1.2) 0;
+    }
+    .brand{
+      display:inline-grid; place-items:center;
+      width:40px; height:40px; border-radius:10px;
+      font-weight:800; letter-spacing:0.5px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color:white; box-shadow: var(--shadow-brand);
+      transition: transform 0.2s ease;
+    }
+    .brand:hover { transform: scale(1.1); }
+    .nav-links{display:flex; gap: clamp(12px, 2vw, 32px); align-items:center}
+    .nav-links a{opacity:0.8; font-weight: 600; transition: opacity 0.2s ease;}
+    .nav-links a:hover{opacity:1; color: var(--brand)}
+    .nav-actions{display:flex; gap:10px; align-items:center}
+    
+    #theme-toggle, .menu-toggle{
+      background: var(--panel-2);
+      color: var(--text);
+      border:1px solid var(--border-color);
+      border-radius: 10px; 
+      padding: 8px; 
+      cursor:pointer;
+      display: grid;
+      place-items: center;
+      transition: background 0.2s ease;
+    }
+    #theme-toggle:hover, .menu-toggle:hover {
+        background: var(--card);
+    }
+    #theme-toggle svg, .menu-toggle svg {
+        width: 20px;
+        height: 20px;
+    }
+    .menu-toggle{display:none}
+
+    @media (max-width: 840px){
+      .menu-toggle{display:inline-grid}
+      .nav-links{
+        position: absolute; inset: 64px var(--space) auto var(--space);
+        display:none; flex-direction:column; gap:12px;
+        padding:14px; border-radius:12px; background: var(--panel);
+        border:1px solid var(--border-color);
+        box-shadow: var(--shadow);
+      }
+      .nav-links.open{display:flex}
+    }
+
+    /* ====== Hero ====== */
+    .hero{
+      display:grid; grid-template-columns: 1.2fr 0.8fr; gap: calc(var(--space)*3);
+      padding: calc(var(--space)*6) 0 calc(var(--space)*4);
+      align-items: center;
+    }
+    .title{font-size: clamp(36px, 5vw, 60px); margin:0 0 8px 0; font-weight: 800;}
+    .subtitle{color: var(--muted); margin: 0 0 calc(var(--space)*2) 0; font-size: clamp(16px, 1.8vw, 20px);}
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      display:inline-block; padding:12px 20px; border-radius:12px;
+      border:1px solid var(--border-color);
+      background: var(--panel-2); color: var(--text);
       font-weight: 600;
-      color: #222;
-      margin-bottom: 15px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover{ transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      border: none; color: white;
+      box-shadow: var(--shadow-brand);
+    }
+    .btn.ghost{background:transparent}
+    .hero-card{
+      padding:18px; border-radius: var(--radius);
+      background: linear-gradient(135deg, color-mix(in oklab, var(--brand), transparent 80%), color-mix(in oklab, var(--brand-2), transparent 85%));
+      border:1px solid var(--border-color);
+      box-shadow: var(--shadow);
+      display:grid; align-content:start; gap:12px;
+    }
+    .avatar{
+      width:72px; height:72px; border-radius:18px; 
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white;
+      padding: 3px;
+    }
+    .avatar-inner {
+        background: #0b1020;
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 24px;
+    }
+    .hero-note{margin:0; color:var(--text); font-weight:600}
+
+    @media (max-width: 900px){
+      .hero{grid-template-columns: 1fr; text-align: center;}
+      .cta-row { justify-content: center; }
+      .hero-card { margin-top: 24px; }
+      .avatar { margin-inline: auto; }
     }
 
-    h1 {
-      font-size: 2em;
-      margin-bottom: 0.5em;
+    /* ====== Timeline ====== */
+    .timeline{
+      list-style:none; padding-left:0; margin:0 auto;
+      max-width: 1000px;
+      border-left:2px solid var(--border-color);
     }
-
-    h2 {
-      font-size: 1.5em;
-      margin-top: 2em;
+    .timeline-item{
+      padding-left:24px; position:relative; margin: 0 0 32px 0;
     }
-
-    h3 {
-      font-size: 1.2em;
-      margin-top: 1.5em;
+    .timeline-item::before{
+      content:""; position:absolute; left:-9px; top:4px;
+      width:14px; height:14px; border-radius:50%;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: 0 0 0 4px var(--ring);
     }
+    .ti-head{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; margin-bottom:8px}
+    .ti-role{font-weight:700; font-size: 1.1rem; color: var(--text);}
+    .ti-place{opacity:0.9; color: var(--muted);}
+    .ti-time{margin-left:auto; opacity:0.7; font-size:0.9rem; color: var(--muted);}
+    .ti-points{margin:0; padding-left:18px; color: var(--muted);}
+    .ti-points li{margin:8px 0; line-height: 1.6;}
 
-    header, section {
-      margin-bottom: 2em;
-    }
-
-    .contact-info {
-      font-size: 0.9em;
-      color: #666;
-      margin-bottom: 1em;
-    }
-
-    .contact-info a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-
-    .contact-info a:hover {
-      text-decoration: underline;
-    }
-
-    .divider {
-      border-bottom: 1px solid #ddd;
-      margin: 2em 0;
-    }
-
-    ul {
-      list-style: disc;
-      padding-left: 20px;
-    }
-
-    .resume-section {
-      margin-bottom: 2em;
-    }
-
-    p {
-      margin-bottom: 1em;
-    }
-
-    /* Responsive adjustments */
     @media (max-width: 600px) {
-      .container {
-        padding: 20px 15px;
-      }
-
-      h1 {
-        font-size: 1.8em;
-      }
-
-      h2 {
-        font-size: 1.4em;
-      }
-
-      h3 {
-        font-size: 1.1em;
-      }
+        .ti-head { flex-direction: column; align-items: flex-start; }
+        .ti-time { margin-left: 0; margin-top: 4px; }
     }
+
+    /* ====== Gallery ====== */
+    .gallery{
+      display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;
+    }
+    .card.project{
+      background: var(--card);
+      border:1px solid var(--border-color);
+      border-radius: 14px; overflow:hidden; cursor:pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card.project:hover{ transform: translateY(-4px); box-shadow: var(--shadow); }
+    .thumb{
+      aspect-ratio: 16 / 9;
+      background: color-mix(in oklab, var(--brand), transparent 95%);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: var(--brand);
+    }
+    .thumb svg {
+        width: 60%;
+        height: auto;
+        opacity: 0.6;
+    }
+    .card-body{ padding: 18px 20px }
+    .card-body h3{ margin: 0 0 6px 0 }
+    .card-body p{ margin: 0; color: var(--muted) }
+
+    /* ====== Skills ====== */
+    .skills-container {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .skill-category {
+        text-align: center;
+    }
+    .skill-category h3 {
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+        color: var(--brand);
+    }
+    .chip-grid{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center }
+    .chip{
+      padding:8px 14px; border-radius:8px; font-weight:600; letter-spacing:.2px;
+      background: var(--panel-2);
+      border:1px solid var(--border-color);
+      transition: transform .2s ease, color .2s ease;
+    }
+    .chip:hover {
+        transform: translateY(-2px);
+        color: var(--brand);
+    }
+    
+
+    /* ====== About ====== */
+    .about{ max-width: 70ch; margin: 0 auto; color: var(--muted); line-height: 1.7; font-size: 1.1rem; text-align: center; }
+
+    /* ====== Contact ====== */
+    .contact-grid{
+      display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px; max-width:800px; margin:0 auto;
+    }
+    .contact-card{
+      text-align:center; padding:18px; border-radius:12px; background: var(--panel);
+      border:1px solid var(--border-color);
+      transition: transform .2s ease, box-shadow .2s ease, color .2s ease;
+      font-weight: 600;
+    }
+    .contact-card:hover{ 
+      transform: translateY(-3px); 
+      box-shadow: var(--shadow);
+      color: var(--brand);
+    }
+
+    /* ====== Footer ====== */
+    .footer{ padding: 24px 0; border-top:1px solid var(--border-color); margin-top: calc(var(--space)*6)}
+    .footer-row{ display:flex; justify-content:space-between; align-items:center; color: var(--muted) }
+    .top-link{ opacity:.8; font-weight: 600; }
+    .top-link:hover{ opacity:1; text-decoration:underline; color: var(--brand); }
+
+    /* ====== Modals ====== */
+    .modal{ position:fixed; inset:0; display:none; place-items:center; background: rgba(0,0,0,.65); backdrop-filter: blur(4px); z-index: 200 }
+    .modal.open{ display:grid }
+    .modal-content{
+      width:min(680px, calc(100% - 2*var(--space)));
+      background: var(--panel-2); color: var(--text);
+      border:1px solid var(--border-color);
+      border-radius: 16px; padding: 24px 28px;
+      box-shadow: var(--shadow);
+      animation: pop .2s ease-out;
+      position: relative;
+    }
+    @keyframes pop{ from{ transform: scale(.95); opacity:0 } to{ transform: scale(1); opacity:1 } }
+    .modal .close{
+      position:absolute; top:12px; right:12px; background:transparent; border:none; color:inherit;
+      font-size:26px; cursor:pointer; opacity: 0.7; transition: opacity 0.2s ease;
+    }
+    .modal .close:hover { opacity: 1; }
+    .modal h3 { margin-top: 0; }
+    .modal p { color: var(--muted); line-height: 1.6; }
+    .modal-actions{ margin-top:16px; display:flex; gap:10px }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Cover Letter</h1>
-      <p class="contact-info">
-        Yash Patodkar<br>
-        <a href="mailto:ypatodkar@scu.edu">ypatodkar@scu.edu</a> | +1 669-343-4851<br>
-        <a href="https://linkedin.com/in/yash-patodkar">LinkedIn</a> | <a href="https://github.com/ypatodkar">GitHub</a>
-      </p>
-    </header>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#">YP</a>
+      <nav id="nav-menu" class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" aria-label="Toggle theme">
+            <!-- Moon Icon -->
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <!-- Sun Icon -->
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-    <section>
-      <p>Dear Hiring Manager,</p>
-      <p>
-        I am thrilled to apply for the Summer Internship Program at Paramount, an opportunity that aligns perfectly with my background in computer science and my passion for working in the dynamic intersection of technology and media. As a Master of Science in Computer Science student at Santa Clara University, I am drawn to Paramount’s innovative approach to creating premium content and experiences for global audiences.
-      </p>
-      <p>
-        My academic and professional journey has equipped me with a blend of technical and project management skills that I believe will make me an asset to your team:
-      </p>
-      <p>
-        <strong>Project Management and Process Optimization:</strong> During my time at Fortinet, I worked on the FortiSOAR product, where I contributed to high-level project planning, task management, and risk identification within a microservices architecture. I also collaborated with cross-functional teams to streamline business processes, ensuring the delivery of high-quality features and bug fixes. My familiarity with Agile methodologies and tools like Jira positions me to excel in operational and project management roles at Paramount.
-      </p>
-      <p>
-        <strong>Technical Documentation and Communication:</strong> In addition to coding, I have prepared comprehensive documentation and help guides for projects, which played a key role in onboarding new team members and ensuring consistent project delivery. My ability to communicate complex technical ideas clearly aligns with the program’s emphasis on collaboration across multiple functional teams.
-      </p>
-      <p>
-        <strong>Technical Expertise:</strong> My hands-on experience includes full-stack development, API integration, and technology application testing. At Fortinet, I utilized programming languages like Java, Python, and JavaScript, frameworks like ReactJS and Spring Boot, and tools such as Git and Google Suite, all of which have honed my technical proficiency and problem-solving abilities.
-      </p>
-      <p>
-        <strong>Creative and Analytical Thinking:</strong> While pursuing my PG-Diploma in Advanced Computing at CDAC Pune, I tackled challenges such as designing scalable databases and deciding between monolithic and microservices architectures for our movie ticket booking app. These experiences have instilled in me a robust analytical mindset, which I am eager to bring to Paramount’s technology projects.
-      </p>
-      <p>
-        Paramount’s dedication to fostering creativity and collaboration resonates deeply with me, as does the opportunity to work on projects that influence culture and entertainment on a global scale. I am particularly excited about the prospect of contributing to your technology team’s innovation and operational success while learning from industry leaders.
-      </p>
-      <p>
-        Thank you for considering my application. I look forward to the possibility of bringing my skills, dedication, and passion to Paramount’s Summer Internship Program.
-      </p>
-      <p>Sincerely,<br>
-        Yash Patodkar
+  <main>
+    <!-- HERO -->
+    <section class="hero container">
+      <div class="hero-text">
+        <h1 class="title">Yash Patodkar</h1>
+        <p class="subtitle">Software Engineer specializing in Backend Development &amp; AI. Currently based in Santa Clara, CA.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn ghost" href="resume.pdf" download>Download Résumé</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="avatar">
+            <div class="avatar-inner">YP</div>
+        </div>
+        <p class="hero-note">Building reliable backends, delightful UIs, and pragmatic AI features that solve real-world problems.</p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section container animated-section">
+      <h2 class="section-title">About Me</h2>
+      <p class="about">
+        I'm a software engineer with a passion for building robust backend systems and intelligent, AI-assisted applications. With industry experience at Fortinet and currently pursuing my Master’s at Santa Clara University, I'm eager to tackle new challenges and contribute to innovative projects. I am actively seeking Software Engineering / Machine Learning internship opportunities.
       </p>
     </section>
 
-    <div class="divider"></div>
-
-    <section class="resume-section">
-      <h2>Resume</h2>
-      <p class="contact-info">
-        Yash Patodkar<br>
-        <a href="mailto:ypatodkar@scu.edu">ypatodkar@scu.edu</a> | +1 669-343-4851<br>
-        <a href="https://linkedin.com/in/yash-patodkar">linkedin.com/in/yash-patodkar</a> | <a href="https://github.com/ypatodkar">github.com/ypatodkar</a>
-      </p>
-
-      <h3>Education</h3>
-      <p><strong>Santa Clara University</strong>, MS in Computer Science and Engineering, Santa Clara, CA (Sept 2024 - Present)<br>
-      <strong>Vishwakarma Institute of Technology</strong>, Bachelor of Technology, Pune, MH (Sept 2017 – May 2021)</p>
-
-      <h3>Experience</h3>
-      <p><strong>Software Development Engineer</strong> (May 2022 – June 2024)<br>
-      <em>Fortinet Technologies, Pune, MH</em></p>
-      <ul>
-        <li>Led full-stack development of the Global Visibility Dashboard for FortiSOAR using AngularJS, resulting in a 30% improvement in incident response times.</li>
-        <li>Designed and implemented data visualization widgets (Funnel Chart, Top-X, Record Summary Cards, Tiles) using JavaScript and D3.js, increasing user engagement by 25%.</li>
-        <li>Built Playbooks from scratch for data aggregation, automating incident reporting and system management.</li>
-        <li>Developed an AI-driven bot using GPT-4, Python, and ChromaDB for playbook generation and conversational assistance.</li>
-        <li>Built RESTful APIs and connectors in Python for seamless integration with external systems like Google Drive, OpenAI, Microsoft Exchange.</li>
-        <li>Enhanced backend operations with Java Spring Boot and optimized the AngularJS frontend, improving system stability and performance.</li>
-        <li>Worked within a microservices architecture, deploying applications using AWS EC2 and Docker, and managed CI/CD with Jenkins.</li>
-        <li>Collaborated with cross-functional teams to ensure adherence to Engineering Excellence practices and timely feature releases.</li>
-      </ul>
-
-      <h3>Projects</h3>
-      <p><strong>Book A Show</strong> | Java, Spring Boot, Spring Security, ReactJS, MySQL (Feb 2022 – Apr 2022)</p>
-      <ul>
-        <li>Developed an end-to-end movie ticketing web application with a ReactJS frontend and Spring Boot backend.</li>
-        <li>Implemented role-based authentication for Admin, Theatre Owner, and Users using Spring Security.</li>
-        <li>Overcame challenges in seat numbering and layout, ensuring a seamless user experience.</li>
-      </ul>
-
-      <p><strong>EduConnect</strong> | TypeScript, Node.js, Next.js, React, PostgreSQL (Aug 2017 – Apr 2018)</p>
-      <ul>
-        <li>Built a peer-to-peer tutoring platform prototype with real-time communication features using WebSockets.</li>
-        <li>Focused on user-centric design and responsiveness to ensure accessibility across devices.</li>
-      </ul>
-
-      <h3>Technical Skills</h3>
-      <p>
-        <strong>Languages:</strong> Java, Python, JavaScript, PHP, C/C++, C#, TypeScript, Kotlin<br>
-        <strong>Front-end:</strong> ReactJS, AngularJS, HTML, CSS, Bootstrap, Vue.js<br>
-        <strong>Back-End:</strong> Node.js, Spring Boot, PHP, Golang, .NET<br>
-        <strong>Databases:</strong> MySQL, PostgreSQL, MongoDB, NoSQL<br>
-        <strong>Tools & Frameworks:</strong> Docker, AWS EC2, Jenkins, Git, Visual Studio, VS Code, PyCharm, Eclipse, STS<br>
-        <strong>Methodologies:</strong> Agile (Scrum), Test-Driven Development (TDD), Rapid Prototyping<br>
-        <strong>Others:</strong> REST APIs, Microservices Architecture, Monolithic architecture, SQL, NoSQL, Data Structures, Shell Scripting, Docker, VM Management
-      </p>
-
-      <h3>Community Involvement</h3>
-      <p><strong>Volunteer Teacher (June 2024 - Sept 2024)</strong></p>
-      <ul>
-        <li>Taught Java programming to 50+ students, focusing on OOP concepts and principles.</li>
-        <li>Conducted Math doubt-solving sessions for students in classes 8th, 9th, and 10th.</li>
-      </ul>
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section container animated-section">
+      <h2 class="section-title">Experience</h2>
+      <ol class="timeline">
+        <li class="timeline-item">
+          <div class="ti-head">
+            <span class="ti-role">Software Development Engineer</span>
+            <span class="ti-place">Fortinet Technologies • Pune, India</span>
+            <span class="ti-time">May 2022 – Jun 2024</span>
+          </div>
+          <ul class="ti-points">
+            <li>Reduced Alert Mean Time to Detect (MTTD) by 50% by developing a Global Visibility Dashboard using AngularJS, improving analyst response with live alert correlation.</li>
+            <li>Expanded the core FortiSOAR UI library by creating 15+ reusable UI components and data visualization widgets in AngularJS.</li>
+            <li>Built an AI Assistant Bot integrated with GPT-4 using Python and Angular, enabling users to generate workflows through natural language.</li>
+            <li>Fine-tuned a GPT-3 model using LoRA with domain-specific data, improving context-aware playbook creation and reducing manual effort by over 50%.</li>
+            <li>Resolved 100+ bugs across AngularJS UI and Spring Boot services, reducing customer-reported issues by 35%.</li>
+          </ul>
+        </li>
+      </ol>
     </section>
+    
+    <!-- EDUCATION -->
+    <section id="education" class="section container animated-section">
+      <h2 class="section-title">Education</h2>
+      <ol class="timeline">
+        <li class="timeline-item">
+          <div class="ti-head">
+            <span class="ti-role">Masters - Computer Science and Engineering</span>
+            <span class="ti-place">Santa Clara University • Santa Clara, USA</span>
+          </div>
+          <div>
+            <p class="ti-time">Sep 2024 – May 2026</p]>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="ti-head">
+            <span class="ti-role">PG-DAC in Advanced Computing</span>
+            <span class="ti-place">CDAC ACTS • Pune, India</span>
+          </div>
+          <div>
+            <p class="ti-time">Sep 2021 – May 2022</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+            <div class="ti-head">
+              <span class="ti-role">Bachelor of Technology</span>
+              <span class="ti-place">Vishwakarma Institute of Technology • Pune, India</span>
+            </div>
+            <div>
+                <p class="ti-time">Aug 2017 – Jun 2021</p>
+            </div>
+          </li>
+      </ol>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section container animated-section">
+      <h2 class="section-title">Projects</h2>
+      <div class="gallery">
+        <article class="card project" data-modal="modal1">
+          <div class="thumb">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="M12 18a6 6 0 0 0-6-6 4 4 0 0 1 0-8"/><path d="M12 18a6 6 0 0 1 6-6 4 4 0 0 0 0-8"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Re‑Mind AI</h3>
+            <p>Mental‑health tracker with on‑device RAG to identify cognitive distortions.</p>
+          </div>
+        </article>
+
+        <article class="card project" data-modal="modal2">
+          <div class="thumb">
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3Z"/><path d="m14.5 12.5-3-3-3 3"/><path d="M2 13h20"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Ticket Booking Platform</h3>
+            <p>Full-stack app (Spring Boot + React) with RBAC and secure seat selection.</p>
+          </div>
+        </article>
+
+        <article class="card project" data-modal="modal3">
+          <div class="thumb">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z"/><path d="m9 15-3-3 3-3"/><path d="M13 15h5"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Presentation Suite</h3>
+            <p>Adobe Express add‑on that generates slide decks from prompts using Gemini.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section container animated-section">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <div class="chip-grid">
+                    <span class="chip">Java</span>
+                    <span class="chip">Python</span>
+                    <span class="chip">JavaScript</span>
+                    <span class="chip">TypeScript</span>
+                    <span class="chip">C++</span>
+                    <span class="chip">HTML/CSS</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Frameworks & Libraries</h3>
+                <div class="chip-grid">
+                    <span class="chip">Spring Boot</span>
+                    <span class="chip">React</span>
+                    <span class="chip">AngularJS</span>
+                    <span class="chip">Node.js</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Databases & Tools</h3>
+                <div class="chip-grid">
+                    <span class="chip">MySQL</span>
+                    <span class="chip">MongoDB</span>
+                    <span class="chip">PostgreSQL</span>
+                    <span class="chip">Docker</span>
+                    <span class="chip">Git</span>
+                    <span class="chip">REST APIs</span>
+                    <span class="chip">System Design</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section container animated-section">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:patodkaryash@gmail.com">📬 Email</a>
+        <a class="contact-card" target="_blank" href="https://linkedin.com/in/yash-patodkar">🔗 LinkedIn</a>
+        <a class="contact-card" target="_blank" href="https://github.com/ypatodkar">💻 GitHub</a>
+        <a class="contact-card" href="tel:+16693434851">📱 Call</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <small>© 2025 Yash Patodkar</small>
+      <a class="top-link" href="#">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- MODALS -->
+  <div class="modal" id="modal1" role="dialog" aria-modal="true" aria-labelledby="m1title" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close" aria-label="Close">×</button>
+      <h3 id="m1title">Re‑Mind AI</h3>
+      <p>A full-stack mental health tracker (Flask + React) that uses the Mistral LLM to detect and label cognitive distortions in user journal entries. It leverages Retrieval-Augmented Generation (RAG) with insights from psychiatric books, all running on-device to ensure complete user privacy.</p>
+      <div class="modal-actions">
+        <a class="btn primary" target="_blank" href="https://devpost.com/software/re-mind-ai">View Demo</a>
+      </div>
+    </div>
   </div>
+
+  <div class="modal" id="modal2" role="dialog" aria-modal="true" aria-labelledby="m2title" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close" aria-label="Close">×</button>
+      <h3 id="m2title">Ticket Booking Platform</h3>
+      <p>Developed a full-stack ticket booking platform using Spring Boot, React, and MySQL, simulating workflows like seat selection and secure payments. The backend features a layered design (Controllers, Services, DAOs) with role-based access control via Spring Security and is containerized with Docker.</p>
+      <div class="modal-actions">
+        <a class="btn primary" target="_blank" href="https://github.com/ypatodkar/TicketBookingWebApp">View on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal3" role="dialog" aria-modal="true" aria-labelledby="m3title" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close" aria-label="Close">×</button>
+      <h3 id="m3title">Presentation Suite</h3>
+      <p>An Adobe Express add-on (Hackathon Winner) that automatically generates full presentations from user prompts using the Gemini API. The tool reduces presentation creation time from hours to minutes, featuring a modular React frontend integrated with Adobe's extension API for a seamless user experience.</p>
+      <div class="modal-actions">
+        <a class="btn primary" target="_blank" href="https://devpost.com/software/storytelling-powered-by-ai">View on Devpost</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- THEME TOGGLE ---
+    (function() {
+      const themeBtn = document.getElementById('theme-toggle');
+      const sunIcon = themeBtn.querySelector('.sun-icon');
+      const moonIcon = themeBtn.querySelector('.moon-icon');
+
+      function applyTheme(theme) {
+        if (theme === 'light') {
+          document.body.classList.add('light');
+          sunIcon.style.display = 'block';
+          moonIcon.style.display = 'none';
+        } else {
+          document.body.classList.remove('light');
+          sunIcon.style.display = 'none';
+          moonIcon.style.display = 'block';
+        }
+      }
+
+      // Respect OS preference on first visit
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      const savedTheme = localStorage.getItem('theme');
+      const initialTheme = savedTheme ? savedTheme : (prefersLight ? 'light' : 'dark');
+      applyTheme(initialTheme);
+
+      // Handle button click
+      themeBtn?.addEventListener('click', () => {
+        const isLight = document.body.classList.contains('light');
+        const newTheme = isLight ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+      });
+    })();
+
+    // --- MOBILE NAV ---
+    const menuBtn = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    menuBtn?.addEventListener('click', () => navMenu.classList.toggle('open'));
+
+    // --- MODALS ---
+    function bindModals(){
+      const cards = document.querySelectorAll('.project');
+      cards.forEach(card => {
+        const id = card.getAttribute('data-modal');
+        const modal = document.getElementById(id);
+        if(!modal) return;
+        
+        function openModal() {
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        card.addEventListener('click', openModal);
+        
+        const closer = modal.querySelector('.close');
+        closer?.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (e) => {
+          if(e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+        });
+      });
+    }
+    bindModals();
+
+    // --- SCROLL ANIMATIONS ---
+    const animatedSections = document.querySelectorAll('.animated-section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.1 
+    });
+
+    animatedSections.forEach(section => {
+        observer.observe(section);
+    });
+
+  </script>
 </body>
 </html>
+
