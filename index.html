@@ -52,6 +52,8 @@
       background: var(--bg);
       color: var(--text);
       transition: background 0.3s ease, color 0.3s ease;
+      position: relative;
+      overflow-x: hidden;
     }
     
     .animated-section {
@@ -467,6 +469,26 @@
             <p>Adobe Express add‑on that generates slide decks from prompts using Gemini.</p>
           </div>
         </article>
+
+        <article class="card project" data-modal="modal4">
+          <div class="thumb">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 1 9 9"/><path d="M18 3v12a9 9 0 0 1-9-9"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>GitHub PR Analyzer</h3>
+            <p>AI-powered PR review system with LLM-based automation and RAG for code insights.</p>
+          </div>
+        </article>
+
+        <article class="card project" data-modal="modal5">
+          <div class="thumb">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12h10"/><path d="M7 16h8"/><path d="M7 8h6"/><path d="M18 8v4"/><path d="M16 10h4"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Sports Analytics Platform</h3>
+            <p>Full-stack stats app with Gemini AI and real-time visualizations for 5+ sports.</p>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -546,7 +568,7 @@
       <h3 id="m2title">Ticket Booking Platform</h3>
       <p>Developed a full-stack ticket booking platform using Spring Boot, React, and MySQL, simulating workflows like seat selection and secure payments. The backend features a layered design (Controllers, Services, DAOs) with role-based access control via Spring Security and is containerized with Docker.</p>
       <div class="modal-actions">
-        <a class="btn primary" target="_blank" href="https://github.com/ypatodkar/TicketBookingWebApp">View on GitHub</a>
+        <a class="btn primary" target="_blank" href="https://youtu.be/K_dCg9T8tFA?t=68">View Demo</a>
       </div>
     </div>
   </div>
@@ -558,6 +580,28 @@
       <p>An Adobe Express add-on (Hackathon Winner) that automatically generates full presentations from user prompts using the Gemini API. The tool reduces presentation creation time from hours to minutes, featuring a modular React frontend integrated with Adobe's extension API for a seamless user experience.</p>
       <div class="modal-actions">
         <a class="btn primary" target="_blank" href="https://devpost.com/software/storytelling-powered-by-ai">View on Devpost</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal4" role="dialog" aria-modal="true" aria-labelledby="m4title" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close" aria-label="Close">×</button>
+      <h3 id="m4title">GitHub PR Analyzer</h3>
+      <p>Engineered a full-stack PR management system using Flask, React, and GitHub API for code reviews, reducing manual review effort by 60% and achieving 40% faster overall review turnaround. Integrated LLM-based code review automation with NVIDIA-Nemotron, LangChain, and RAG (Retrieval-Augmented Generation) using FAISS vector databases, enabling AI-generated insights with 85% accuracy on pull request feedback. Created a continuous learning loop that improved AI feedback quality by 20% over iterative retraining cycles.</p>
+      <div class="modal-actions">
+        <a class="btn primary" target="_blank" href="https://github.com/ypatodkar">View on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal5" role="dialog" aria-modal="true" aria-labelledby="m5title" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close" aria-label="Close">×</button>
+      <h3 id="m5title">Sports Analytics Platform</h3>
+      <p>Created a full-stack sports statistics app using React, TypeScript, and Gemini AI with Search Grounding for 95% accurate stats across 5+ sports, featuring custom visualizations with Chart.js. Deployed a serverless backend using AWS Lambda and API Gateway that handles 1,000+ monthly requests with less than 2 seconds of latency. Implemented CI/CD via AWS Amplify for 99.9% uptime, ensuring global HTTPS access for all users.</p>
+      <div class="modal-actions">
+        <a class="btn primary" target="_blank" href="https://main.d3218t3euk8dbo.amplifyapp.com/">Live Demo</a>
       </div>
     </div>
   </div>
