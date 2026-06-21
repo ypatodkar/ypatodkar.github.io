@@ -6,257 +6,332 @@
   <title>Yash Patodkar — Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --text:   #111111;
-      --t2:     #555555;
-      --t3:     #999999;
-      --border: #e5e7eb;
-      --bg:     #ffffff;
-      --green:  #16a34a;
+      --bg:       #ffffff;
+      --bg2:      #f5f4ff;
+      --bg3:      #f8f9fc;
+      --text:     #0f172a;
+      --t2:       #475569;
+      --t3:       #94a3b8;
+      --border:   #e2e8f0;
+      --accent:   #6366f1;
+      --accent-s: rgba(99,102,241,0.09);
+      --accent-m: rgba(99,102,241,0.18);
+      --green:    #10b981;
+      --green-s:  rgba(16,185,129,0.1);
     }
 
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 15px;
-      line-height: 1.65;
-      color: var(--text);
-      background: var(--bg);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px; line-height: 1.65;
+      color: var(--text); background: var(--bg);
       -webkit-font-smoothing: antialiased;
     }
-
     a { color: var(--text); text-decoration: none; }
-    a:hover { text-decoration: underline; text-underline-offset: 3px; }
-
-    .wrap { max-width: 780px; margin-inline: auto; padding-inline: 24px; }
 
     /* ── NAV ──────────────────────────────────────────────── */
     .nav {
       position: sticky; top: 0; z-index: 100;
       background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
     .nav-inner {
-      max-width: 780px; margin-inline: auto; padding-inline: 24px;
+      max-width: 880px; margin: 0 auto; padding: 0 28px;
       display: flex; justify-content: space-between; align-items: center;
-      height: 52px;
+      height: 54px;
     }
-    .nav-name { font-weight: 600; font-size: 0.9rem; }
-    .nav-links { display: flex; gap: 22px; }
-    .nav-links a { font-size: 0.85rem; color: var(--t2); transition: color 0.15s; }
-    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-name { font-weight: 700; font-size: 0.9rem; }
+    .nav-links { display: flex; gap: 6px; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--t2);
+      padding: 5px 10px; border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-links a:hover { background: var(--bg2); color: var(--accent); }
+    .nav-resume {
+      background: var(--accent) !important;
+      color: #fff !important;
+      font-weight: 600 !important;
+    }
+    .nav-resume:hover { background: #4f52d3 !important; color: #fff !important; }
 
-    /* ── BIO ──────────────────────────────────────────────── */
-    .bio {
-      display: flex; align-items: flex-start; gap: 32px;
-      padding: 60px 0 52px;
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      background: var(--bg2);
+      border-bottom: 1px solid #dddcfd;
     }
-    .bio-photo {
-      width: 120px; height: 120px; border-radius: 50%;
+    .hero-inner {
+      max-width: 880px; margin: 0 auto; padding: 52px 28px 48px;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 48px;
+    }
+    .hero-text { flex: 1; }
+
+    .hero-status {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px;
+      color: var(--green); background: var(--green-s);
+      border: 1px solid rgba(16,185,129,0.2);
+      padding: 3px 10px; border-radius: 20px; margin-bottom: 16px;
+    }
+    .hero-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .hero-name {
+      font-size: 2.9rem; font-weight: 800; letter-spacing: -1.5px;
+      line-height: 1.05; margin-bottom: 10px; color: var(--text);
+    }
+    .hero-role { font-size: 1rem; color: var(--t2); margin-bottom: 20px; }
+    .hero-role strong { color: var(--accent); font-weight: 600; }
+
+    .hero-desc {
+      font-size: 0.94rem; color: var(--t2); line-height: 1.78;
+      margin-bottom: 22px; max-width: 420px;
+    }
+    .hero-facts {
+      display: flex; flex-wrap: wrap; gap: 4px 20px;
+      font-size: 0.8rem; color: var(--t3); margin-bottom: 24px;
+    }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-link {
+      font-size: 0.83rem; font-weight: 600;
+      padding: 7px 16px; border-radius: 7px;
+      border: 1.5px solid var(--border);
+      color: var(--t2); transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .hero-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-s); }
+    .hero-link.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .hero-link.primary:hover { background: #4f52d3; border-color: #4f52d3; color: #fff; }
+
+    .hero-photo {
+      width: 160px; height: 160px; border-radius: 14px;
       object-fit: cover; object-position: center top;
       flex-shrink: 0;
-      border: 1px solid var(--border);
+      border: 2px solid #d4d3fc;
+      box-shadow: 0 8px 32px rgba(99,102,241,0.14);
     }
-    .bio-name { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
-    .bio-role { font-size: 0.9rem; color: var(--t2); margin-bottom: 16px; }
-    .bio-role .live { color: var(--green); font-weight: 600; }
-    .bio-desc {
-      font-size: 0.94rem; color: var(--t2); line-height: 1.75;
-      margin-bottom: 18px; max-width: 440px;
-    }
-    .bio-facts {
-      display: flex; flex-wrap: wrap; gap: 3px 18px;
-      font-size: 0.8rem; color: var(--t3); margin-bottom: 18px;
-    }
-    .bio-links { display: flex; gap: 18px; }
-    .bio-links a {
-      font-size: 0.86rem; font-weight: 500;
-      text-decoration: underline; text-underline-offset: 3px;
-      color: var(--text);
-    }
-    .bio-links a:hover { color: var(--t2); }
 
-    /* ── SECTION ──────────────────────────────────────────── */
-    .section { padding: 44px 0; border-top: 1px solid var(--border); }
+    /* ── LAYOUT ───────────────────────────────────────────── */
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+    .section { padding: 48px 0; border-top: 1px solid var(--border); }
+
+    .sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
     .sec-label {
-      font-size: 0.7rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 1.3px;
-      color: var(--t3); margin-bottom: 24px;
+      font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
+      white-space: nowrap;
     }
+    .sec-line { flex: 1; height: 1px; background: var(--border); }
 
     /* ── EXPERIENCE ───────────────────────────────────────── */
-    .exp-item { border-bottom: 1px solid var(--border); }
+    .exp-item {
+      border-bottom: 1px solid var(--border);
+      border-left: 3px solid transparent;
+      padding-left: 14px; margin-left: -14px;
+      transition: border-color 0.2s, background 0.2s;
+    }
     .exp-item:first-of-type { border-top: 1px solid var(--border); }
+    details[open].exp-item {
+      border-left-color: var(--accent);
+      background: linear-gradient(90deg, rgba(99,102,241,0.02) 0%, transparent 60%);
+      border-radius: 0 8px 8px 0;
+    }
 
     .exp-trigger {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 15px 0; cursor: pointer; gap: 12px;
-      list-style: none; /* for <summary> fallback */
+      padding: 16px 14px 16px 0; cursor: pointer; gap: 12px; list-style: none;
     }
     .exp-trigger::-webkit-details-marker { display: none; }
 
     .exp-lhs { display: flex; align-items: center; gap: 12px; min-width: 0; }
-    .exp-co { font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
-    .exp-sep { color: var(--border); font-size: 1.2rem; }
+    .exp-co { font-weight: 700; font-size: 1rem; white-space: nowrap; }
+    .exp-sep { color: var(--border); }
     .exp-role-label { font-size: 0.875rem; color: var(--t2); }
 
     .exp-rhs { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
     .exp-now {
       display: inline-flex; align-items: center; gap: 5px;
-      font-size: 0.7rem; font-weight: 700; color: var(--green);
+      font-size: 0.68rem; font-weight: 700; color: var(--green);
       text-transform: uppercase; letter-spacing: 0.5px;
+      background: var(--green-s); border: 1px solid rgba(16,185,129,0.2);
+      padding: 2px 8px; border-radius: 20px;
     }
-    .exp-now-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--green);
-      animation: blink 2s infinite;
-    }
-    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+    .exp-now-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: blink 2s infinite; }
     .exp-date-label { font-size: 0.8rem; color: var(--t3); white-space: nowrap; }
-    .exp-chevron {
-      font-size: 0.7rem; color: var(--t3);
-      transition: transform 0.25s;
-      margin-left: 4px;
-    }
+    .exp-chevron { font-size: 0.8rem; color: var(--t3); transition: transform 0.25s; }
+    details[open] .exp-chevron { transform: rotate(180deg); }
 
-    /* Smooth expand via grid trick */
     .exp-body-wrap {
-      display: grid;
-      grid-template-rows: 0fr;
+      display: grid; grid-template-rows: 0fr;
       transition: grid-template-rows 0.28s cubic-bezier(.4,0,.2,1);
     }
     details[open] .exp-body-wrap { grid-template-rows: 1fr; }
-    details[open] .exp-chevron { transform: rotate(180deg); }
-
     .exp-body { overflow: hidden; }
-    .exp-body-inner { padding-bottom: 22px; }
+    .exp-body-inner { padding: 0 14px 22px 0; }
 
-    .exp-location { font-size: 0.8rem; color: var(--t3); margin-bottom: 14px; }
+    .exp-location { font-size: 0.78rem; color: var(--t3); margin-bottom: 16px; }
 
-    .exp-kpis { display: flex; gap: 28px; margin-bottom: 16px; flex-wrap: wrap; }
+    .exp-kpis { display: flex; gap: 28px; margin-bottom: 18px; flex-wrap: wrap; }
     .exp-kpi { display: flex; flex-direction: column; gap: 2px; }
-    .kpi-num { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.5px; line-height: 1; }
-    .kpi-lbl { font-size: 0.66rem; color: var(--t3); text-transform: uppercase; letter-spacing: 0.5px; }
+    .kpi-num { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px; line-height: 1; color: var(--accent); }
+    .kpi-lbl { font-size: 0.64rem; color: var(--t3); text-transform: uppercase; letter-spacing: 0.6px; }
 
-    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
-    .exp-bullets li {
-      font-size: 0.88rem; color: var(--t2);
-      line-height: 1.68; padding-left: 14px; position: relative;
-    }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 16px; }
+    .exp-bullets li { font-size: 0.88rem; color: var(--t2); line-height: 1.7; padding-left: 14px; position: relative; }
     .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--t3); }
 
-    .exp-tech { font-size: 0.78rem; color: var(--t3); }
+    .exp-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      font-size: 0.72rem; font-weight: 500; padding: 2px 9px; border-radius: 5px;
+      background: var(--accent-s); color: #4648c8; border: 1px solid var(--accent-m);
+    }
 
     /* ── PROJECTS ─────────────────────────────────────────── */
-    .ytabs { display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap; }
+    .ytabs { display: flex; gap: 6px; margin-bottom: 22px; flex-wrap: wrap; }
     .ytab {
-      padding: 4px 12px; border-radius: 5px;
-      border: 1px solid var(--border);
-      background: none; font-size: 0.78rem; font-weight: 500;
-      color: var(--t2); cursor: pointer; font-family: inherit;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      padding: 5px 14px; border-radius: 7px; border: 1.5px solid var(--border);
+      background: none; font-size: 0.78rem; font-weight: 600;
+      color: var(--t2); cursor: pointer; font-family: inherit; transition: all 0.15s;
     }
-    .ytab:hover { border-color: #bbb; color: var(--text); }
-    .ytab.active { background: var(--text); color: #fff; border-color: var(--text); }
+    .ytab:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-s); }
+    .ytab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-    .proj-list { display: flex; flex-direction: column; }
-    .proj-item {
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex; flex-direction: column; gap: 5px;
+    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .proj-card {
+      border: 1.5px solid var(--border); border-radius: 10px; padding: 18px 20px;
+      display: flex; flex-direction: column; gap: 7px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      background: var(--bg);
     }
-    .proj-item:first-child { border-top: 1px solid var(--border); }
-    .proj-item.hidden { display: none; }
+    .proj-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 28px rgba(99,102,241,0.1);
+      transform: translateY(-3px);
+    }
+    .proj-card.hidden { display: none; }
+    .proj-card.feat { grid-column: span 2; flex-direction: row; gap: 24px; }
+    .proj-left { flex: 1; display: flex; flex-direction: column; gap: 7px; }
+    .proj-right { flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-end; }
 
-    .proj-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-    .proj-name { font-weight: 600; font-size: 0.93rem; }
-    .proj-year { font-size: 0.78rem; color: var(--t3); flex-shrink: 0; }
-    .proj-stack { font-size: 0.78rem; color: var(--t3); }
-    .proj-desc { font-size: 0.875rem; color: var(--t2); line-height: 1.6; }
-    .proj-links { display: flex; gap: 14px; margin-top: 2px; }
+    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .proj-name { font-weight: 700; font-size: 0.92rem; line-height: 1.3; }
+    .proj-year {
+      font-size: 0.68rem; font-weight: 700; flex-shrink: 0;
+      color: var(--accent); background: var(--accent-s); border: 1px solid var(--accent-m);
+      padding: 1px 7px; border-radius: 4px;
+    }
+    .proj-stack { font-size: 0.76rem; color: var(--t3); line-height: 1.5; }
+    .proj-desc { font-size: 0.84rem; color: var(--t2); line-height: 1.65; flex: 1; }
+    .proj-links { display: flex; gap: 12px; margin-top: 4px; }
     .proj-link {
-      font-size: 0.78rem; font-weight: 500; color: var(--t2);
-      text-decoration: underline; text-underline-offset: 3px;
+      font-size: 0.78rem; font-weight: 600; color: var(--accent);
+      text-decoration: underline; text-underline-offset: 3px; transition: color 0.15s;
     }
-    .proj-link:hover { color: var(--text); }
+    .proj-link:hover { color: #4648c8; }
 
     /* ── SKILLS ───────────────────────────────────────────── */
-    .sk-grid { display: grid; grid-template-columns: 110px 1fr; }
+    .sk-grid { display: grid; grid-template-columns: 120px 1fr; }
     .sk-row { display: contents; }
     .sk-cat {
-      padding: 11px 0; border-bottom: 1px solid var(--border);
-      font-size: 0.76rem; color: var(--t3); font-weight: 500;
-      display: flex; align-items: flex-start; padding-top: 14px;
+      padding: 13px 0; border-bottom: 1px solid var(--border);
+      font-size: 0.74rem; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.8px;
+      display: flex; align-items: flex-start; padding-top: 16px;
     }
-    .sk-val {
-      padding: 12px 0; border-bottom: 1px solid var(--border);
-      font-size: 0.875rem; color: var(--t2); line-height: 1.7;
-    }
-    .sk-row:last-child .sk-cat,
-    .sk-row:last-child .sk-val { border-bottom: none; }
+    .sk-val { padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 0.875rem; color: var(--t2); line-height: 1.72; }
+    .sk-row:last-child .sk-cat, .sk-row:last-child .sk-val { border-bottom: none; }
 
     /* ── EDUCATION ────────────────────────────────────────── */
     .edu-list { display: flex; flex-direction: column; }
     .edu-item {
       display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
-      padding: 14px 0; border-bottom: 1px solid var(--border);
+      padding: 15px 0; border-bottom: 1px solid var(--border);
     }
     .edu-item:first-child { border-top: 1px solid var(--border); }
-    .edu-deg { font-weight: 600; font-size: 0.9rem; margin-bottom: 2px; }
+    .edu-deg { font-weight: 700; font-size: 0.9rem; margin-bottom: 3px; }
     .edu-sch { font-size: 0.82rem; color: var(--t2); }
     .edu-gpa {
-      display: inline-block; margin-top: 5px;
+      display: inline-block; margin-top: 6px;
       font-size: 0.72rem; font-weight: 700; color: var(--green);
-      background: rgba(22,163,74,0.08); border: 1px solid rgba(22,163,74,0.18);
-      padding: 1px 7px; border-radius: 4px;
+      background: var(--green-s); border: 1px solid rgba(16,185,129,0.2);
+      padding: 2px 8px; border-radius: 5px;
     }
-    .edu-r { text-align: right; flex-shrink: 0; font-size: 0.8rem; color: var(--t3); }
+    .edu-r { text-align: right; flex-shrink: 0; font-size: 0.8rem; color: var(--t3); line-height: 1.6; }
 
     /* ── RECOGNITION ──────────────────────────────────────── */
     .recog-list { display: flex; flex-direction: column; }
     .recog-item {
-      display: flex; align-items: flex-start; gap: 16px;
-      padding: 13px 0; border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
     }
     .recog-item:first-child { border-top: 1px solid var(--border); }
-    .recog-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
-    .recog-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 2px; }
+    .recog-badge {
+      flex-shrink: 0; margin-top: 1px; width: 34px; height: 34px; border-radius: 8px;
+      background: var(--accent-s); border: 1px solid var(--accent-m);
+      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    }
+    .recog-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 3px; }
     .recog-sub { font-size: 0.82rem; color: var(--t2); line-height: 1.55; }
 
+    /* ── CONTACT ──────────────────────────────────────────── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .contact-card {
+      border: 1.5px solid var(--border); border-radius: 10px; padding: 16px 18px;
+      transition: all 0.15s; display: flex; flex-direction: column; gap: 3px;
+    }
+    .contact-card:hover { border-color: var(--accent); background: var(--accent-s); transform: translateY(-2px); }
+    .contact-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--t3); }
+    .contact-val { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+
     /* ── FOOTER ───────────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border); padding: 24px 0;
+    footer { border-top: 1px solid var(--border); background: var(--bg3); }
+    .foot-inner {
+      max-width: 880px; margin: 0 auto; padding: 20px 28px;
+      display: flex; justify-content: space-between; align-items: center;
       font-size: 0.78rem; color: var(--t3);
     }
-    .footer-inner {
-      max-width: 780px; margin-inline: auto; padding-inline: 24px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .back-top { text-decoration: underline; text-underline-offset: 3px; transition: color 0.15s; }
-    .back-top:hover { color: var(--text); }
+    .back-top { transition: color 0.15s; }
+    .back-top:hover { color: var(--accent); }
 
     /* ── REVEAL ───────────────────────────────────────────── */
-    .r { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .r { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .r.in { opacity: 1; transform: none; }
-    .r.d1 { transition-delay: 0.07s; }
-    .r.d2 { transition-delay: 0.14s; }
+    .r.d1 { transition-delay: 0.08s; }
+    .r.d2 { transition-delay: 0.16s; }
+    .r.d3 { transition-delay: 0.24s; }
+
+    .ha { opacity: 0; transform: translateY(16px); animation: heroFade 0.6s ease forwards; }
+    .ha.a1 { animation-delay: 0.05s; }
+    .ha.a2 { animation-delay: 0.15s; }
+    .ha.a3 { animation-delay: 0.25s; }
+    .ha.a4 { animation-delay: 0.35s; }
+    .ha.a5 { animation-delay: 0.45s; }
+    .ha.a6 { animation-delay: 0.55s; }
+    @keyframes heroFade { to { opacity: 1; transform: none; } }
 
     /* ── RESPONSIVE ───────────────────────────────────────── */
-    @media (max-width: 580px) {
-      .bio { flex-direction: column; gap: 18px; padding: 40px 0 36px; }
-      .bio-photo { width: 84px; height: 84px; }
-      .exp-lhs { flex-direction: column; align-items: flex-start; gap: 2px; }
-      .exp-sep { display: none; }
+    @media (max-width: 640px) {
+      .hero-inner { flex-direction: column-reverse; gap: 20px; padding: 36px 20px 32px; }
+      .hero-name { font-size: 2.1rem; }
+      .hero-photo { width: 100px; height: 100px; align-self: flex-start; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .proj-card.feat { grid-column: span 1; flex-direction: column; }
       .sk-grid { grid-template-columns: 1fr; }
-      .sk-cat { border-bottom: none; padding-bottom: 2px; padding-top: 12px; }
+      .sk-cat { border-bottom: none; padding-bottom: 2px; }
       .edu-item { flex-direction: column; gap: 4px; }
       .edu-r { text-align: left; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-inner, .wrap { padding-left: 16px; padding-right: 16px; }
+      .exp-lhs { flex-wrap: wrap; gap: 4px; }
     }
   </style>
 </head>
@@ -270,47 +345,49 @@
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
-      <a href="Yash Patodkar Resume.pdf" target="_blank">Résumé ↗</a>
+      <a href="Yash Patodkar Resume.pdf" target="_blank" class="nav-resume">Résumé ↗</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap">
-
-  <!-- ══ BIO ════════════════════════════════════════════════ -->
-  <div class="bio r">
-    <img
-      class="bio-photo"
-      src="images/1000005658.jpg"
-      alt="Yash Patodkar"
-    >
-    <div>
-      <div class="bio-name">Yash Patodkar</div>
-      <div class="bio-role">Software Engineer · <span class="live">Tenex.ai</span></div>
-      <p class="bio-desc">
-        Building Go backends, AI agents, and reliable infrastructure.
-        2+ years at Fortinet shipping FortiSOAR features used by enterprise SOC teams.
-        Currently at Tenex.ai building multi-agent security systems.
+<!-- ══ HERO ═════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-status ha a1"><span class="hero-dot"></span>Currently at Tenex.ai</div>
+      <h1 class="hero-name ha a2">Yash<br>Patodkar</h1>
+      <p class="hero-role ha a3">Software Engineer · <strong>Go backends &amp; AI systems</strong></p>
+      <p class="hero-desc ha a4">
+        2+ years shipping FortiSOAR features used by enterprise SOC teams at Fortinet.
+        Now at Tenex.ai building multi-agent security infrastructure.
         MS CS at Santa Clara University.
       </p>
-      <div class="bio-facts">
-        <span>Santa Clara, CA</span>
+      <div class="hero-facts ha a5">
+        <span>📍 Santa Clara, CA</span>
         <span>GPA 3.7 / 4.0</span>
         <span>3× Hackathon Winner</span>
-        <span>99.2 %ile CDAC National Exam</span>
+        <span>99.2%ile CDAC Exam</span>
       </div>
-      <div class="bio-links">
-        <a href="mailto:patodkaryash@gmail.com">Email ↗</a>
-        <a href="https://linkedin.com/in/yash-patodkar" target="_blank">LinkedIn ↗</a>
-        <a href="https://github.com/ypatodkar" target="_blank">GitHub ↗</a>
-        <a href="tel:+16693434851">+1 669 343 4851</a>
+      <div class="hero-links ha a6">
+        <a href="mailto:patodkaryash@gmail.com" class="hero-link primary">Email me</a>
+        <a href="https://linkedin.com/in/yash-patodkar" target="_blank" class="hero-link">LinkedIn ↗</a>
+        <a href="https://github.com/ypatodkar" target="_blank" class="hero-link">GitHub ↗</a>
+        <a href="tel:+16693434851" class="hero-link">+1 669 343 4851</a>
       </div>
     </div>
+    <img class="hero-photo ha a2" src="images/1000005658.jpg" alt="Yash Patodkar">
   </div>
+</section>
 
-  <!-- ══ EXPERIENCE ═════════════════════════════════════════ -->
+<!-- ══ MAIN ══════════════════════════════════════════════════ -->
+<main class="wrap">
+
+  <!-- ── EXPERIENCE ───────────────────────────────────────── -->
   <section class="section" id="experience">
-    <div class="sec-label r">Experience</div>
+    <div class="sec-head r">
+      <span class="sec-label">Experience</span>
+      <div class="sec-line"></div>
+    </div>
 
     <details class="exp-item r" open>
       <summary class="exp-trigger">
@@ -330,17 +407,20 @@
           <div class="exp-body-inner">
             <div class="exp-location">Santa Clara, CA</div>
             <div class="exp-kpis">
-              <div class="exp-kpi">
-                <span class="kpi-num">50%</span>
-                <span class="kpi-lbl">Onboarding Effort ↓</span>
-              </div>
+              <div class="exp-kpi"><span class="kpi-num">50%</span><span class="kpi-lbl">Onboarding Effort ↓</span></div>
             </div>
             <ul class="exp-bullets">
               <li>Initiated and designed a vendor integration framework in Go that generates code from authentication types, API endpoints, and response schemas — reducing new integration onboarding effort by 50%.</li>
               <li>Built Go backend services for multi-agent security workflows, handling large volumes of operational data and improving reliability across data ingestion and analytics pipelines.</li>
               <li>Implemented a data-enrichment pipeline that aggregated context from multiple sources, enabling AI agents to make more informed threat-detection and triage decisions.</li>
             </ul>
-            <div class="exp-tech">Go · Multi-Agent AI · Backend Services · Data Pipelines · Security</div>
+            <div class="exp-chips">
+              <span class="chip">Go</span>
+              <span class="chip">Multi-Agent AI</span>
+              <span class="chip">Backend Services</span>
+              <span class="chip">Data Pipelines</span>
+              <span class="chip">Security</span>
+            </div>
           </div>
         </div>
       </div>
@@ -363,18 +443,9 @@
           <div class="exp-body-inner">
             <div class="exp-location">Pune, India</div>
             <div class="exp-kpis">
-              <div class="exp-kpi">
-                <span class="kpi-num">85%</span>
-                <span class="kpi-lbl">AI Model Precision</span>
-              </div>
-              <div class="exp-kpi">
-                <span class="kpi-num">30%</span>
-                <span class="kpi-lbl">Latency Reduced</span>
-              </div>
-              <div class="exp-kpi">
-                <span class="kpi-num">500+</span>
-                <span class="kpi-lbl">Test Cases</span>
-              </div>
+              <div class="exp-kpi"><span class="kpi-num">85%</span><span class="kpi-lbl">AI Model Precision</span></div>
+              <div class="exp-kpi"><span class="kpi-num">30%</span><span class="kpi-lbl">Latency Reduced</span></div>
+              <div class="exp-kpi"><span class="kpi-num">500+</span><span class="kpi-lbl">Test Cases</span></div>
             </div>
             <ul class="exp-bullets">
               <li>Built FortiSOAR AI Advisor; validated AI model accuracy with 500+ test cases achieving 85% precision, demonstrating proficiency in ML model validation and software test engineering.</li>
@@ -382,17 +453,26 @@
               <li>Optimized large-scale system performance by tuning Elasticsearch and SQL query logic for universal search — reducing record retrieval latency by 30% across millions of records.</li>
               <li>Owned and enhanced Java microservices including the API-Gateway and Notifier services (Spring Boot), delivering secure request routing and service-to-service communication.</li>
             </ul>
-            <div class="exp-tech">Java · Spring Boot · Angular · C++ · Elasticsearch · Python</div>
+            <div class="exp-chips">
+              <span class="chip">Java</span>
+              <span class="chip">Spring Boot</span>
+              <span class="chip">Angular</span>
+              <span class="chip">C++</span>
+              <span class="chip">Elasticsearch</span>
+              <span class="chip">Python</span>
+            </div>
           </div>
         </div>
       </div>
     </details>
-
   </section>
 
-  <!-- ══ PROJECTS ═══════════════════════════════════════════ -->
+  <!-- ── PROJECTS ─────────────────────────────────────────── -->
   <section class="section" id="projects">
-    <div class="sec-label r">Projects</div>
+    <div class="sec-head r">
+      <span class="sec-label">Projects</span>
+      <div class="sec-line"></div>
+    </div>
 
     <div class="ytabs r">
       <button class="ytab active" data-year="all">All</button>
@@ -401,101 +481,103 @@
       <button class="ytab" data-year="2024">2024</button>
     </div>
 
-    <div class="proj-list r">
+    <div class="proj-grid r">
 
-      <div class="proj-item" data-year="2026">
-        <div class="proj-top">
-          <span class="proj-name">Movie Recommendation System</span>
-          <span class="proj-year">2026</span>
-        </div>
-        <div class="proj-stack">Python · PyTorch · Kubernetes · Terraform · MLflow · Triton · Prometheus</div>
-        <div class="proj-desc">Cloud-native recommendation engine handling 500K+ daily interactions with &lt;100ms latency during 5× traffic spikes. Kubernetes autoscaling, Terraform-provisioned infra, Triton-served model.</div>
-        <div class="proj-links">
-          <a href="https://github.com/ypatodkar" target="_blank" class="proj-link">GitHub ↗</a>
+      <div class="proj-card feat" data-year="2026">
+        <div class="proj-left">
+          <div class="proj-top">
+            <span class="proj-name">Movie Recommendation System</span>
+            <span class="proj-year">2026</span>
+          </div>
+          <div class="proj-stack">Python · PyTorch · Kubernetes · Terraform · MLflow · Triton · Prometheus</div>
+          <div class="proj-desc">Cloud-native recommendation engine handling <strong>500K+ daily interactions</strong> with &lt;100ms latency during 5× traffic spikes. Kubernetes autoscaling, Terraform-provisioned infra, Triton inference server — built for production scale.</div>
+          <div class="proj-links">
+            <a href="https://github.com/ypatodkar" target="_blank" class="proj-link">GitHub ↗</a>
+          </div>
         </div>
       </div>
 
-      <div class="proj-item" data-year="2025">
+      <div class="proj-card" data-year="2025">
         <div class="proj-top">
           <span class="proj-name">Sports Analytics Platform</span>
           <span class="proj-year">2025</span>
         </div>
-        <div class="proj-stack">React · TypeScript · Gemini AI · AWS Lambda · Chart.js · AWS Amplify</div>
-        <div class="proj-desc">Full-stack stats app using Gemini AI with Search Grounding for 95% accurate stats across 5+ sports. Serverless backend handles 1,000+ monthly requests with 99.9% uptime.</div>
+        <div class="proj-stack">React · TypeScript · Gemini AI · AWS Lambda · Chart.js</div>
+        <div class="proj-desc">95% accurate stats across 5+ sports via Gemini AI with Search Grounding. Serverless backend handles 1,000+ monthly requests with 99.9% uptime.</div>
         <div class="proj-links">
           <a href="https://main.d3218t3euk8dbo.amplifyapp.com/" target="_blank" class="proj-link">Live Demo ↗</a>
         </div>
       </div>
 
-      <div class="proj-item" data-year="2025">
+      <div class="proj-card" data-year="2025">
         <div class="proj-top">
           <span class="proj-name">Threat Detection System</span>
           <span class="proj-year">2025</span>
         </div>
-        <div class="proj-stack">React · Node.js · Express · PostgreSQL · AWS Lambda · AWS Amplify</div>
-        <div class="proj-desc">SOC platform analyzing Zscaler and Apache/Nginx logs with 10 anomaly-detection rules. Scores threats 0.0–1.0 with confidence levels. Multi-user auth, real-time dashboards.</div>
+        <div class="proj-stack">React · Node.js · Express · PostgreSQL · AWS Lambda</div>
+        <div class="proj-desc">SOC platform analyzing Zscaler and Apache/Nginx logs with 10 anomaly-detection rules. Scores threats 0–1.0 with confidence levels, multi-user auth, real-time dashboards.</div>
         <div class="proj-links">
           <a href="https://main.djqvks4i9xlkw.amplifyapp.com" target="_blank" class="proj-link">Live Demo ↗</a>
           <a href="https://github.com/ypatodkar/threat-detection-zscaler" target="_blank" class="proj-link">GitHub ↗</a>
         </div>
       </div>
 
-      <div class="proj-item" data-year="2025">
+      <div class="proj-card" data-year="2025">
         <div class="proj-top">
           <span class="proj-name">Resume Auto Editor</span>
           <span class="proj-year">2025</span>
         </div>
         <div class="proj-stack">Python · Flask · React · Gemini AI · Google Docs API · OAuth 2.0</div>
-        <div class="proj-desc">AI-powered resume optimizer using Gemini to extract keywords from job descriptions and auto-apply targeted edits directly into Google Docs, preserving all formatting.</div>
+        <div class="proj-desc">AI-powered resume optimizer using Gemini to extract job-description keywords and auto-apply targeted edits directly into Google Docs — preserving all formatting.</div>
         <div class="proj-links">
           <a href="https://main.d1hmnkmby0w01s.amplifyapp.com/" target="_blank" class="proj-link">Live Demo ↗</a>
           <a href="https://github.com/ypatodkar/resume-auto-editor" target="_blank" class="proj-link">GitHub ↗</a>
         </div>
       </div>
 
-      <div class="proj-item" data-year="2025">
+      <div class="proj-card" data-year="2025">
         <div class="proj-top">
           <span class="proj-name">Re‑Mind AI</span>
           <span class="proj-year">2025</span>
         </div>
         <div class="proj-stack">Flask · React · Mistral LLM · ChromaDB · RAG · MongoDB</div>
-        <div class="proj-desc">Mental-health tracker that identifies cognitive distortions in journal entries using RAG over five psychiatric books. Runs fully on-device. Achieved 95% parity with ChatGPT. <strong>Best Grad Hack — Hack for Humanity 2025.</strong></div>
+        <div class="proj-desc">Mental-health tracker identifying cognitive distortions in journal entries via RAG over psychiatric literature. Fully on-device. 95% parity with ChatGPT. <strong>Best Grad Hack — Hack for Humanity 2025.</strong></div>
         <div class="proj-links">
           <a href="https://devpost.com/software/re-mind-ai" target="_blank" class="proj-link">Devpost ↗</a>
         </div>
       </div>
 
-      <div class="proj-item" data-year="2024">
-        <div class="proj-top">
-          <span class="proj-name">Presentation Suite</span>
-          <span class="proj-year">2024</span>
-        </div>
-        <div class="proj-stack">React · Gemini AI · Adobe Express API</div>
-        <div class="proj-desc">Adobe Express add-on that generates full slide decks from a user prompt using Gemini. Reduces presentation creation from hours to minutes. <strong>Hackathon Winner — Creators Corner.</strong></div>
-        <div class="proj-links">
-          <a href="https://devpost.com/software/storytelling-powered-by-ai" target="_blank" class="proj-link">Devpost ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-item" data-year="2024">
+      <div class="proj-card" data-year="2024">
         <div class="proj-top">
           <span class="proj-name">GitHub PR Analyzer</span>
           <span class="proj-year">2024</span>
         </div>
         <div class="proj-stack">Flask · React · LangChain · FAISS · NVIDIA Nemotron · GitHub API</div>
-        <div class="proj-desc">AI-powered PR review system with LLM automation and RAG over codebases using FAISS. Reduced manual review effort by 60%, 40% faster turnaround, 85% accuracy on feedback.</div>
+        <div class="proj-desc">AI-powered PR review with LLM automation and RAG over codebases. 60% less manual review effort, 40% faster turnaround, 85% accuracy on feedback.</div>
         <div class="proj-links">
           <a href="https://github.com/ypatodkar" target="_blank" class="proj-link">GitHub ↗</a>
         </div>
       </div>
 
-      <div class="proj-item" data-year="2024">
+      <div class="proj-card" data-year="2024">
+        <div class="proj-top">
+          <span class="proj-name">Presentation Suite</span>
+          <span class="proj-year">2024</span>
+        </div>
+        <div class="proj-stack">React · Gemini AI · Adobe Express API</div>
+        <div class="proj-desc">Adobe Express add-on generating full slide decks from a single prompt using Gemini. Reduces presentation creation from hours to minutes. <strong>Hackathon Winner — Creators Corner.</strong></div>
+        <div class="proj-links">
+          <a href="https://devpost.com/software/storytelling-powered-by-ai" target="_blank" class="proj-link">Devpost ↗</a>
+        </div>
+      </div>
+
+      <div class="proj-card" data-year="2024">
         <div class="proj-top">
           <span class="proj-name">Ticket Booking Platform</span>
           <span class="proj-year">2024</span>
         </div>
         <div class="proj-stack">Spring Boot · React · MySQL · Docker · Spring Security</div>
-        <div class="proj-desc">Full-stack ticket booking platform with RBAC, seat selection, and secure payment simulation. Layered backend architecture containerized with Docker.</div>
+        <div class="proj-desc">Full-stack booking platform with RBAC, seat selection, and secure payment simulation. Layered backend architecture containerized with Docker.</div>
         <div class="proj-links">
           <a href="https://youtu.be/K_dCg9T8tFA?t=68" target="_blank" class="proj-link">Demo ↗</a>
         </div>
@@ -504,9 +586,12 @@
     </div>
   </section>
 
-  <!-- ══ SKILLS ══════════════════════════════════════════════ -->
+  <!-- ── SKILLS ───────────────────────────────────────────── -->
   <section class="section" id="skills">
-    <div class="sec-label r">Skills</div>
+    <div class="sec-head r">
+      <span class="sec-label">Skills</span>
+      <div class="sec-line"></div>
+    </div>
     <div class="sk-grid r">
       <div class="sk-row">
         <div class="sk-cat">Languages</div>
@@ -514,22 +599,25 @@
       </div>
       <div class="sk-row">
         <div class="sk-cat">Frameworks</div>
-        <div class="sk-val">Spring Boot, PyTorch, Flask, React, NestJS, Hibernate/JPA, Ray, AngularJS</div>
+        <div class="sk-val">Spring Boot, PyTorch, Flask, React, NestJS, Hibernate / JPA, Ray, AngularJS</div>
       </div>
       <div class="sk-row">
         <div class="sk-cat">Cloud &amp; DevOps</div>
-        <div class="sk-val">AWS, Kubernetes, Docker, Terraform, Prometheus/Grafana, CI/CD, Jenkins, Git, Linux</div>
+        <div class="sk-val">AWS, Kubernetes, Docker, Terraform, Prometheus / Grafana, CI/CD, Jenkins, Git, Linux</div>
       </div>
       <div class="sk-row">
         <div class="sk-cat">Data &amp; Tools</div>
-        <div class="sk-val">Kafka, Elasticsearch, Redis, MLflow, Triton, MongoDB, PostgreSQL, MySQL, System Design, Networking</div>
+        <div class="sk-val">Kafka, Elasticsearch, Redis, MLflow, Triton, MongoDB, PostgreSQL, MySQL, System Design</div>
       </div>
     </div>
   </section>
 
-  <!-- ══ EDUCATION ══════════════════════════════════════════ -->
+  <!-- ── EDUCATION ────────────────────────────────────────── -->
   <section class="section" id="education">
-    <div class="sec-label r">Education</div>
+    <div class="sec-head r">
+      <span class="sec-label">Education</span>
+      <div class="sec-line"></div>
+    </div>
     <div class="edu-list r">
       <div class="edu-item">
         <div>
@@ -541,7 +629,7 @@
       </div>
       <div class="edu-item">
         <div>
-          <div class="edu-deg">Post-Graduation Diploma in Advanced Computing</div>
+          <div class="edu-deg">PG Diploma in Advanced Computing</div>
           <div class="edu-sch">CDAC ACTS &nbsp;·&nbsp; 83%</div>
         </div>
         <div class="edu-r">Sep 2021 – May 2022<br>Pune, India</div>
@@ -556,53 +644,71 @@
     </div>
   </section>
 
-  <!-- ══ RECOGNITION ════════════════════════════════════════ -->
+  <!-- ── RECOGNITION ──────────────────────────────────────── -->
   <section class="section">
-    <div class="sec-label r">Recognition</div>
+    <div class="sec-head r">
+      <span class="sec-label">Recognition</span>
+      <div class="sec-line"></div>
+    </div>
     <div class="recog-list r">
       <div class="recog-item">
-        <div class="recog-icon">🏆</div>
+        <div class="recog-badge">🏆</div>
         <div>
           <div class="recog-title">3× Hackathon Winner</div>
-          <div class="recog-sub">Hack for Humanity (SCU) — Best Grad Hack for Re-Mind AI. Two Creators Corner wins including Adobe Express AI challenge.</div>
+          <div class="recog-sub">Best Grad Hack — Hack for Humanity (SCU) for Re-Mind AI. Two Creators Corner wins including the Adobe Express AI challenge.</div>
         </div>
       </div>
       <div class="recog-item">
-        <div class="recog-icon">📊</div>
+        <div class="recog-badge">📊</div>
         <div>
           <div class="recog-title">99.2 Percentile — National CDAC Exam</div>
-          <div class="recog-sub">Rank 151 out of 20,000+ candidates in the PG-DAC national entrance examination.</div>
+          <div class="recog-sub">Rank 151 of 20,000+ candidates in the PG-DAC national entrance examination across India.</div>
         </div>
       </div>
       <div class="recog-item">
-        <div class="recog-icon">📄</div>
+        <div class="recog-badge">📄</div>
         <div>
           <div class="recog-title">Published Research</div>
-          <div class="recog-sub">Authored a research paper on Inter-Satellite communication in Satellite Communications under Dr. Moataghed.</div>
+          <div class="recog-sub">Authored a paper on inter-satellite communication in Satellite Communications under Dr. Moataghed.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══ CONTACT ════════════════════════════════════════════ -->
+  <!-- ── CONTACT ───────────────────────────────────────────── -->
   <section class="section" id="contact">
-    <div class="sec-label r">Contact</div>
-    <div class="r">
-      <p style="font-size:0.94rem; color:var(--t2); margin-bottom:16px; max-width:420px; line-height:1.75;">
-        Open to conversations about interesting engineering problems, collaborations, and opportunities.
-      </p>
-      <div class="bio-links">
-        <a href="mailto:patodkaryash@gmail.com">patodkaryash@gmail.com ↗</a>
-        <a href="https://linkedin.com/in/yash-patodkar" target="_blank">LinkedIn ↗</a>
-        <a href="https://github.com/ypatodkar" target="_blank">GitHub ↗</a>
-      </div>
+    <div class="sec-head r">
+      <span class="sec-label">Contact</span>
+      <div class="sec-line"></div>
+    </div>
+    <p style="font-size:0.94rem;color:var(--t2);margin-bottom:18px;max-width:440px;line-height:1.75;" class="r">
+      Open to interesting engineering problems, collaborations, and new opportunities.
+    </p>
+    <div class="contact-grid r">
+      <a href="mailto:patodkaryash@gmail.com" class="contact-card">
+        <span class="contact-label">Email</span>
+        <span class="contact-val">patodkaryash@gmail.com</span>
+      </a>
+      <a href="https://linkedin.com/in/yash-patodkar" target="_blank" class="contact-card">
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-val">yash-patodkar ↗</span>
+      </a>
+      <a href="https://github.com/ypatodkar" target="_blank" class="contact-card">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-val">ypatodkar ↗</span>
+      </a>
+      <a href="tel:+16693434851" class="contact-card">
+        <span class="contact-label">Phone</span>
+        <span class="contact-val">+1 669 343 4851</span>
+      </a>
     </div>
   </section>
 
 </main>
 
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
 <footer>
-  <div class="footer-inner">
+  <div class="foot-inner">
     <span>© 2026 Yash Patodkar</span>
     <a href="#" class="back-top">Back to top ↑</a>
   </div>
@@ -615,8 +721,8 @@
       document.querySelectorAll('.ytab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       const year = tab.dataset.year;
-      document.querySelectorAll('.proj-item').forEach(proj => {
-        proj.classList.toggle('hidden', year !== 'all' && proj.dataset.year !== year);
+      document.querySelectorAll('[data-year]').forEach(card => {
+        card.classList.toggle('hidden', year !== 'all' && card.dataset.year !== year);
       });
     });
   });
@@ -628,25 +734,16 @@
   document.querySelectorAll('.r').forEach(el => ro.observe(el));
 
   // Scroll spy
-  const sections = document.querySelectorAll('section[id]');
-  const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
-  new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting)
-        navAs.forEach(a => {
-          a.style.color = a.getAttribute('href') === '#' + e.target.id ? 'var(--text)' : '';
-        });
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' }).observe && sections.forEach(s =>
+  document.querySelectorAll('section[id]').forEach(s => {
     new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting)
-          navAs.forEach(a => {
-            a.style.color = a.getAttribute('href') === '#' + e.target.id ? 'var(--text)' : '';
+          document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+            a.style.fontWeight = a.getAttribute('href') === '#' + e.target.id ? '700' : '';
           });
       });
-    }, { rootMargin: '-40% 0px -55% 0px' }).observe(s)
-  );
+    }, { rootMargin: '-40% 0px -55% 0px' }).observe(s);
+  });
 </script>
 
 </body>
