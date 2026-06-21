@@ -265,45 +265,53 @@
     .r.d5 { transition-delay: 0.40s; }
 
     /* ── EXPERIENCE ──────────────────────────────────── */
-    .exp-stack { display: flex; flex-direction: column; gap: 3px; }
+    .exp-track { display: flex; flex-direction: column; }
 
+    .exp-row {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 0 16px;
+    }
+
+    /* Timeline rail */
+    .exp-rail { display: flex; flex-direction: column; align-items: center; padding-top: 10px; }
+    .exp-node {
+      width: 13px; height: 13px; border-radius: 50%;
+      border: 3px solid var(--bg);
+      flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .node-c { background: var(--cyan); box-shadow: 0 0 0 1.5px var(--cyan), 0 0 0 5px rgba(2,132,199,0.14); }
+    .node-f { background: var(--amber); box-shadow: 0 0 0 1.5px var(--amber), 0 0 0 5px rgba(180,83,9,0.12); }
+    .exp-spine {
+      width: 1px; flex: 1; min-height: 24px;
+      background: linear-gradient(to bottom, var(--border) 60%, transparent);
+      margin: 8px 0;
+    }
+    .exp-row:last-child .exp-spine { display: none; }
+
+    /* Card */
     .exp-card {
       background: var(--s1);
       border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 30px 32px;
-      box-shadow: 0 1px 4px rgba(15,23,42,0.06);
-      transition: border-color 0.25s, box-shadow 0.25s;
+      border-radius: 16px;
+      padding: 26px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(15,23,42,0.06);
+      transition: box-shadow 0.25s, border-color 0.25s;
     }
-    .exp-card:hover { border-color: var(--bh); box-shadow: 0 4px 18px rgba(15,23,42,0.1); }
+    .exp-card:hover { box-shadow: 0 8px 28px rgba(15,23,42,0.11); border-color: var(--bh); }
 
-    .exp-top {
+    /* Card header */
+    .exp-hd {
       display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 16px; margin-bottom: 22px;
+      align-items: flex-start; gap: 16px;
+      padding-bottom: 18px; margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
     }
-    .exp-left { display: flex; align-items: center; gap: 14px; }
-
-    .co-mark {
-      width: 46px; height: 46px; border-radius: 11px;
-      display: grid; place-items: center;
-      font-weight: 900; font-size: 1.1rem; flex-shrink: 0;
-    }
-    .co-tenex {
-      background: linear-gradient(135deg, var(--cyan-s), var(--purple-s));
-      border: 1px solid rgba(2,132,199,0.22);
-      color: var(--cyan);
-    }
-    .co-fort {
-      background: var(--amber-s);
-      border: 1px solid rgba(251,191,36,0.22);
-      color: var(--amber);
-    }
-
-    .co-name { font-weight: 800; font-size: 1.12rem; letter-spacing: -0.3px; }
-    .co-role { font-size: 0.85rem; color: var(--t2); margin-top: 2px; }
-
-    .exp-right { text-align: right; flex-shrink: 0; }
-    .exp-date { font-size: 0.82rem; color: var(--t3); margin-top: 4px; }
+    .exp-co { font-size: 1.18rem; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 3px; }
+    .exp-rl { font-size: 0.875rem; color: var(--t2); font-weight: 500; }
+    .exp-hd-r { text-align: right; flex-shrink: 0; }
+    .exp-dt { font-size: 0.8rem; color: var(--t3); font-weight: 500; margin-top: 4px; }
 
     .badge-now {
       display: inline-flex; align-items: center; gap: 5px;
@@ -320,25 +328,33 @@
       animation: pulse-anim 2s infinite;
     }
 
-    .exp-pts { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    /* KPI callout row */
+    .exp-kpi { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    .kpi {
+      display: flex; flex-direction: column; gap: 3px;
+      padding: 10px 16px; border-radius: 10px;
+      background: var(--s2); border: 1px solid var(--border);
+      min-width: 84px;
+    }
+    .kpi-n { font-size: 1.3rem; font-weight: 900; letter-spacing: -1px; line-height: 1; color: var(--text); }
+    .kpi-l { font-size: 0.68rem; font-weight: 600; color: var(--t3); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Bullets */
+    .exp-pts { list-style: none; display: flex; flex-direction: column; gap: 11px; }
     .exp-pts li {
-      font-size: 0.905rem; color: var(--t2);
-      line-height: 1.68; padding-left: 20px; position: relative;
+      font-size: 0.9rem; color: var(--t2);
+      line-height: 1.72; padding-left: 16px; position: relative;
     }
     .exp-pts li::before {
-      content: '→'; position: absolute; left: 0;
-      color: var(--cyan); font-size: 0.78rem; top: 1px;
+      content: ''; position: absolute; left: 0; top: 10px;
+      width: 5px; height: 5px; border-radius: 50%; background: var(--t3);
     }
-    .exp-pts mark {
-      background: rgba(2,132,199,0.10);
-      color: var(--cyan);
-      border-radius: 4px; padding: 1px 4px;
-      font-weight: 700; font-style: normal;
-    }
+    .exp-pts mark { background: none; color: var(--text); font-weight: 700; font-style: normal; }
 
+    /* Chips */
     .exp-chips {
       display: flex; gap: 6px; flex-wrap: wrap;
-      margin-top: 20px; padding-top: 20px;
+      margin-top: 18px; padding-top: 18px;
       border-top: 1px solid var(--border);
     }
     .chip {
@@ -352,8 +368,10 @@
     .chip.go { background: var(--cyan-s); border-color: rgba(2,132,199,0.25); color: var(--cyan); }
 
     @media (max-width: 600px) {
-      .exp-top { flex-direction: column; }
-      .exp-right { text-align: left; }
+      .exp-row { grid-template-columns: 1fr; }
+      .exp-rail { display: none; }
+      .exp-hd { flex-direction: column; }
+      .exp-hd-r { text-align: left; }
     }
 
     /* ── PROJECTS BENTO ──────────────────────────────── */
@@ -648,62 +666,89 @@
       <span class="sec-n">01</span>
       <h2 class="sec-t">Experience</h2>
     </div>
-    <div class="exp-stack">
+    <div class="exp-track">
 
-      <div class="exp-card r">
-        <div class="exp-top">
-          <div class="exp-left">
-            <div class="co-mark co-tenex">T</div>
+      <!-- Tenex.ai -->
+      <div class="exp-row r">
+        <div class="exp-rail">
+          <div class="exp-node node-c"></div>
+          <div class="exp-spine"></div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-hd">
             <div>
-              <div class="co-name">Tenex.ai</div>
-              <div class="co-role">Software Engineer · Santa Clara, CA</div>
+              <div class="exp-co">Tenex.ai</div>
+              <div class="exp-rl">Software Engineer &nbsp;·&nbsp; Santa Clara, CA</div>
+            </div>
+            <div class="exp-hd-r">
+              <div class="badge-now"><div class="badge-now-dot"></div>Current</div>
+              <div class="exp-dt">Apr 2026 – Present</div>
             </div>
           </div>
-          <div class="exp-right">
-            <div class="badge-now"><div class="badge-now-dot"></div>Current</div>
-            <div class="exp-date">Apr 2026 – Present</div>
+          <div class="exp-kpi">
+            <div class="kpi">
+              <span class="kpi-n">50%</span>
+              <span class="kpi-l">Onboarding Effort ↓</span>
+            </div>
           </div>
-        </div>
-        <ul class="exp-pts">
-          <li>Initiated and designed a vendor integration framework in Go that generates code from authentication types, API endpoints, and response schemas — reducing new integration onboarding effort by <mark>50%</mark>.</li>
-          <li>Built Go backend services for multi-agent security workflows, handling large volumes of operational data and improving reliability across data ingestion and analytics pipelines.</li>
-          <li>Implemented a data-enrichment pipeline that aggregated context from multiple sources, enabling AI agents to make more informed threat-detection and triage decisions.</li>
-        </ul>
-        <div class="exp-chips">
-          <span class="chip go">Go</span>
-          <span class="chip">Multi-Agent AI</span>
-          <span class="chip">Backend Services</span>
-          <span class="chip">Data Pipelines</span>
-          <span class="chip">Security</span>
+          <ul class="exp-pts">
+            <li>Initiated and designed a vendor integration framework in Go that generates code from authentication types, API endpoints, and response schemas — reducing new integration onboarding effort by <mark>50%</mark>.</li>
+            <li>Built Go backend services for multi-agent security workflows, handling large volumes of operational data and improving reliability across data ingestion and analytics pipelines.</li>
+            <li>Implemented a data-enrichment pipeline that aggregated context from multiple sources, enabling AI agents to make more informed threat-detection and triage decisions.</li>
+          </ul>
+          <div class="exp-chips">
+            <span class="chip go">Go</span>
+            <span class="chip">Multi-Agent AI</span>
+            <span class="chip">Backend Services</span>
+            <span class="chip">Data Pipelines</span>
+            <span class="chip">Security</span>
+          </div>
         </div>
       </div>
 
-      <div class="exp-card r d1">
-        <div class="exp-top">
-          <div class="exp-left">
-            <div class="co-mark co-fort">F</div>
+      <!-- Fortinet -->
+      <div class="exp-row r d1">
+        <div class="exp-rail">
+          <div class="exp-node node-f"></div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-hd">
             <div>
-              <div class="co-name">Fortinet</div>
-              <div class="co-role">Software Engineer · Pune, India</div>
+              <div class="exp-co">Fortinet</div>
+              <div class="exp-rl">Software Engineer &nbsp;·&nbsp; Pune, India</div>
+            </div>
+            <div class="exp-hd-r">
+              <div class="exp-dt">May 2022 – Jun 2024</div>
             </div>
           </div>
-          <div class="exp-right">
-            <div class="exp-date">May 2022 – Jun 2024</div>
+          <div class="exp-kpi">
+            <div class="kpi">
+              <span class="kpi-n">85%</span>
+              <span class="kpi-l">AI Model Precision</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-n">30%</span>
+              <span class="kpi-l">Latency Reduced</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-n">500+</span>
+              <span class="kpi-l">Test Cases</span>
+            </div>
           </div>
-        </div>
-        <ul class="exp-pts">
-          <li>Built FortiSOAR AI Advisor; validated AI model accuracy with <mark>500+ test cases</mark> achieving <mark>85% precision</mark>, demonstrating proficiency in ML model validation and software test engineering.</li>
-          <li>Led delivery of high-priority data visualization dashboards (Global Visibility Dashboard) using Angular and C++, designing consolidated APIs to reduce heavy frontend calls and optimize performance.</li>
-          <li>Optimized large-scale system performance by tuning Elasticsearch and SQL query logic for universal search — reducing record retrieval latency by <mark>30%</mark> across millions of records.</li>
-          <li>Owned and enhanced Java microservices including the API-Gateway and Notifier services (Spring Boot), delivering secure request routing, notification workflows, and service-to-service communication.</li>
-        </ul>
-        <div class="exp-chips">
-          <span class="chip">Java</span>
-          <span class="chip">Spring Boot</span>
-          <span class="chip">Angular</span>
-          <span class="chip">C++</span>
-          <span class="chip">Elasticsearch</span>
-          <span class="chip">Python</span>
+          <ul class="exp-pts">
+            <li>Built FortiSOAR AI Advisor; validated AI model accuracy with <mark>500+ test cases</mark> achieving <mark>85% precision</mark>, demonstrating proficiency in ML model validation and software test engineering.</li>
+            <li>Led delivery of high-priority data visualization dashboards (Global Visibility Dashboard) using Angular and C++, designing consolidated APIs to reduce heavy frontend calls and optimize performance.</li>
+            <li>Optimized large-scale system performance by tuning Elasticsearch and SQL query logic for universal search — reducing record retrieval latency by <mark>30%</mark> across millions of records.</li>
+            <li>Owned and enhanced Java microservices including the API-Gateway and Notifier services (Spring Boot), delivering secure request routing, notification workflows, and service-to-service communication.</li>
+          </ul>
+          <div class="exp-chips">
+            <span class="chip">Java</span>
+            <span class="chip">Spring Boot</span>
+            <span class="chip">Angular</span>
+            <span class="chip">C++</span>
+            <span class="chip">Elasticsearch</span>
+            <span class="chip">Python</span>
+          </div>
         </div>
       </div>
 
