@@ -133,25 +133,19 @@
 
     /* ── EXPERIENCE ───────────────────────────────────────── */
     .exp-item {
-      border-bottom: 1px solid var(--border);
-      border-left: 3px solid transparent;
-      padding-left: 14px; margin-left: -14px;
-      transition: border-color 0.2s, background 0.2s;
+      border-top: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding-left: 20px; margin-left: -20px;
+      padding-bottom: 36px;
     }
-    .exp-item:first-of-type { border-top: 1px solid var(--border); }
-    details[open].exp-item {
-      border-left-color: var(--accent);
-      background: linear-gradient(90deg, rgba(99,102,241,0.02) 0%, transparent 60%);
-      border-radius: 0 8px 8px 0;
-    }
+    .exp-item + .exp-item { margin-top: 4px; }
 
-    .exp-trigger {
+    .exp-header {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 14px 16px 0; cursor: pointer; gap: 12px; list-style: none;
+      padding: 18px 0 14px; gap: 12px;
     }
-    .exp-trigger::-webkit-details-marker { display: none; }
 
-    .exp-lhs { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .exp-lhs { display: flex; align-items: center; gap: 12px; min-width: 0; flex-wrap: wrap; }
     .exp-co { font-weight: 700; font-size: 1rem; white-space: nowrap; }
     .exp-sep { color: var(--border); }
     .exp-role-label { font-size: 0.875rem; color: var(--t2); }
@@ -166,16 +160,6 @@
     }
     .exp-now-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: blink 2s infinite; }
     .exp-date-label { font-size: 0.8rem; color: var(--t3); white-space: nowrap; }
-    .exp-chevron { font-size: 0.8rem; color: var(--t3); transition: transform 0.25s; }
-    details[open] .exp-chevron { transform: rotate(180deg); }
-
-    .exp-body-wrap {
-      display: grid; grid-template-rows: 0fr;
-      transition: grid-template-rows 0.28s cubic-bezier(.4,0,.2,1);
-    }
-    details[open] .exp-body-wrap { grid-template-rows: 1fr; }
-    .exp-body { overflow: hidden; }
-    .exp-body-inner { padding: 0 14px 22px 0; }
 
     .exp-location { font-size: 0.78rem; color: var(--t3); margin-bottom: 16px; }
 
@@ -305,9 +289,12 @@
     /* ── REVEAL ───────────────────────────────────────────── */
     .r { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .r.in { opacity: 1; transform: none; }
-    .r.d1 { transition-delay: 0.08s; }
-    .r.d2 { transition-delay: 0.16s; }
-    .r.d3 { transition-delay: 0.24s; }
+    .r.d1 { transition-delay: 0.07s; }
+    .r.d2 { transition-delay: 0.14s; }
+    .r.d3 { transition-delay: 0.21s; }
+    .r.d4 { transition-delay: 0.28s; }
+    .r.d5 { transition-delay: 0.35s; }
+    .r.d6 { transition-delay: 0.42s; }
 
     .ha { opacity: 0; transform: translateY(16px); animation: heroFade 0.6s ease forwards; }
     .ha.a1 { animation-delay: 0.05s; }
@@ -389,8 +376,8 @@
       <div class="sec-line"></div>
     </div>
 
-    <details class="exp-item r" open>
-      <summary class="exp-trigger">
+    <div class="exp-item">
+      <div class="exp-header r">
         <div class="exp-lhs">
           <span class="exp-co">Tenex.ai</span>
           <span class="exp-sep">·</span>
@@ -399,35 +386,28 @@
         <div class="exp-rhs">
           <span class="exp-now"><span class="exp-now-dot"></span>Now</span>
           <span class="exp-date-label">Apr 2026 – Present</span>
-          <span class="exp-chevron">▾</span>
-        </div>
-      </summary>
-      <div class="exp-body-wrap">
-        <div class="exp-body">
-          <div class="exp-body-inner">
-            <div class="exp-location">Santa Clara, CA</div>
-            <div class="exp-kpis">
-              <div class="exp-kpi"><span class="kpi-num">50%</span><span class="kpi-lbl">Onboarding Effort ↓</span></div>
-            </div>
-            <ul class="exp-bullets">
-              <li>Initiated and designed a vendor integration framework in Go that generates code from authentication types, API endpoints, and response schemas — reducing new integration onboarding effort by 50%.</li>
-              <li>Built Go backend services for multi-agent security workflows, handling large volumes of operational data and improving reliability across data ingestion and analytics pipelines.</li>
-              <li>Implemented a data-enrichment pipeline that aggregated context from multiple sources, enabling AI agents to make more informed threat-detection and triage decisions.</li>
-            </ul>
-            <div class="exp-chips">
-              <span class="chip">Go</span>
-              <span class="chip">Multi-Agent AI</span>
-              <span class="chip">Backend Services</span>
-              <span class="chip">Data Pipelines</span>
-              <span class="chip">Security</span>
-            </div>
-          </div>
         </div>
       </div>
-    </details>
+      <div class="exp-location r d1">Santa Clara, CA</div>
+      <div class="exp-kpis r d1">
+        <div class="exp-kpi"><span class="kpi-num">50%</span><span class="kpi-lbl">Onboarding Effort ↓</span></div>
+      </div>
+      <ul class="exp-bullets">
+        <li class="r d2">Initiated and designed a vendor integration framework in Go that generates code from authentication types, API endpoints, and response schemas — reducing new integration onboarding effort by 50%.</li>
+        <li class="r d3">Built Go backend services for multi-agent security workflows, handling large volumes of operational data and improving reliability across data ingestion and analytics pipelines.</li>
+        <li class="r d4">Implemented a data-enrichment pipeline that aggregated context from multiple sources, enabling AI agents to make more informed threat-detection and triage decisions.</li>
+      </ul>
+      <div class="exp-chips r d5">
+        <span class="chip">Go</span>
+        <span class="chip">Multi-Agent AI</span>
+        <span class="chip">Backend Services</span>
+        <span class="chip">Data Pipelines</span>
+        <span class="chip">Security</span>
+      </div>
+    </div>
 
-    <details class="exp-item r d1">
-      <summary class="exp-trigger">
+    <div class="exp-item">
+      <div class="exp-header r">
         <div class="exp-lhs">
           <span class="exp-co">Fortinet</span>
           <span class="exp-sep">·</span>
@@ -435,36 +415,29 @@
         </div>
         <div class="exp-rhs">
           <span class="exp-date-label">May 2022 – Jun 2024</span>
-          <span class="exp-chevron">▾</span>
-        </div>
-      </summary>
-      <div class="exp-body-wrap">
-        <div class="exp-body">
-          <div class="exp-body-inner">
-            <div class="exp-location">Pune, India</div>
-            <div class="exp-kpis">
-              <div class="exp-kpi"><span class="kpi-num">85%</span><span class="kpi-lbl">AI Model Precision</span></div>
-              <div class="exp-kpi"><span class="kpi-num">30%</span><span class="kpi-lbl">Latency Reduced</span></div>
-              <div class="exp-kpi"><span class="kpi-num">500+</span><span class="kpi-lbl">Test Cases</span></div>
-            </div>
-            <ul class="exp-bullets">
-              <li>Built FortiSOAR AI Advisor; validated AI model accuracy with 500+ test cases achieving 85% precision, demonstrating proficiency in ML model validation and software test engineering.</li>
-              <li>Led delivery of the Global Visibility Dashboard using Angular and C++, designing consolidated APIs to reduce heavy frontend calls and optimize performance.</li>
-              <li>Optimized large-scale system performance by tuning Elasticsearch and SQL query logic for universal search — reducing record retrieval latency by 30% across millions of records.</li>
-              <li>Owned and enhanced Java microservices including the API-Gateway and Notifier services (Spring Boot), delivering secure request routing and service-to-service communication.</li>
-            </ul>
-            <div class="exp-chips">
-              <span class="chip">Java</span>
-              <span class="chip">Spring Boot</span>
-              <span class="chip">Angular</span>
-              <span class="chip">C++</span>
-              <span class="chip">Elasticsearch</span>
-              <span class="chip">Python</span>
-            </div>
-          </div>
         </div>
       </div>
-    </details>
+      <div class="exp-location r d1">Pune, India</div>
+      <div class="exp-kpis r d1">
+        <div class="exp-kpi"><span class="kpi-num">85%</span><span class="kpi-lbl">AI Model Precision</span></div>
+        <div class="exp-kpi"><span class="kpi-num">30%</span><span class="kpi-lbl">Latency Reduced</span></div>
+        <div class="exp-kpi"><span class="kpi-num">500+</span><span class="kpi-lbl">Test Cases</span></div>
+      </div>
+      <ul class="exp-bullets">
+        <li class="r d2">Built FortiSOAR AI Advisor; validated AI model accuracy with 500+ test cases achieving 85% precision, demonstrating proficiency in ML model validation and software test engineering.</li>
+        <li class="r d3">Led delivery of the Global Visibility Dashboard using Angular and C++, designing consolidated APIs to reduce heavy frontend calls and optimize performance.</li>
+        <li class="r d4">Optimized large-scale system performance by tuning Elasticsearch and SQL query logic for universal search — reducing record retrieval latency by 30% across millions of records.</li>
+        <li class="r d5">Owned and enhanced Java microservices including the API-Gateway and Notifier services (Spring Boot), delivering secure request routing and service-to-service communication.</li>
+      </ul>
+      <div class="exp-chips r d6">
+        <span class="chip">Java</span>
+        <span class="chip">Spring Boot</span>
+        <span class="chip">Angular</span>
+        <span class="chip">C++</span>
+        <span class="chip">Elasticsearch</span>
+        <span class="chip">Python</span>
+      </div>
+    </div>
   </section>
 
   <!-- ── PROJECTS ─────────────────────────────────────────── -->
