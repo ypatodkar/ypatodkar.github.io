@@ -93,10 +93,33 @@
     .hero-role { font-size: 1rem; color: var(--t2); margin-bottom: 20px; }
     .hero-role strong { color: var(--accent); font-weight: 600; }
 
+    .hero-tagline {
+      font-size: 0.95rem; color: var(--t3); font-style: italic;
+      margin-bottom: 10px; letter-spacing: 0.1px;
+    }
     .hero-desc {
       font-size: 0.94rem; color: var(--t2); line-height: 1.78;
       margin-bottom: 22px; max-width: 420px;
     }
+
+    /* ── WRITING ──────────────────────────────────────────── */
+    .post-card {
+      border: 1.5px solid var(--border); border-radius: 12px;
+      padding: 26px 30px;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .post-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+    .post-tag {
+      font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
+      color: var(--accent); background: var(--accent-s); border: 1px solid var(--accent-m);
+      padding: 2px 8px; border-radius: 4px;
+    }
+    .post-date { font-size: 0.76rem; color: var(--t3); }
+    .post-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 14px; line-height: 1.3; color: var(--text); }
+    .post-body { font-size: 0.875rem; color: var(--t2); line-height: 1.8; }
+    .post-body p { margin-bottom: 13px; }
+    .post-body p:last-child { margin-bottom: 0; }
     .hero-facts {
       display: flex; flex-wrap: wrap; gap: 4px 20px;
       font-size: 0.8rem; color: var(--t3); margin-bottom: 24px;
@@ -388,12 +411,13 @@
     <div class="hero-text">
       <div class="hero-status ha a1"><span class="hero-dot"></span>Currently at Tenex.ai</div>
       <h1 class="hero-name ha a2">Yash<br>Patodkar</h1>
+      <p class="hero-tagline ha a3">Backend engineer. Go by day, Rust by curiosity.</p>
       <p class="hero-role ha a3">Software Engineer · <strong>Tenex.ai</strong></p>
       <p class="hero-desc ha a4">
         I write Go, think in systems, and like problems that are actually hard.
-        2+ years at Fortinet building enterprise security products used by SOC teams worldwide —
-        now at Tenex.ai shipping multi-agent infrastructure.
-        MS CS at Santa Clara University.
+        2+ years at Fortinet on enterprise security products, now at Tenex.ai
+        building multi-agent infrastructure. Currently exploring how far AI agents
+        can go before they need a human in the loop.
       </p>
       <div class="hero-facts ha a5">
         <span>📍 Santa Clara, CA</span>
@@ -525,13 +549,38 @@
           <span class="oss-lang"><span class="oss-lang-dot" style="background:#3178c6"></span>TypeScript</span>
           <span class="oss-stars">★ 2.7k</span>
         </div>
-        <p class="oss-desc">Aesthetic, minimalist platform for learning Japanese kana — think Duolingo meets Monkeytype. Built with Next.js and sponsored by Vercel. Beginner-friendly codebase with active community contributions.</p>
+        <p class="oss-desc">Aesthetic, minimalist platform for learning Japanese kana — think Duolingo meets Monkeytype. Built with Next.js and sponsored by Vercel. Contributed a Snow Pine color theme defined using modern <code style="font-size:0.82rem;background:var(--bg2);padding:1px 5px;border-radius:3px">oklch()</code> color space, resolving issue #6270.</p>
         <div class="oss-links">
           <a href="https://github.com/lingdojo/kana-dojo/pull/6274" target="_blank" class="proj-link">PR #6274 — merged ↗</a>
           <a href="https://github.com/lingdojo/kana-dojo" target="_blank" class="proj-link">Repo ↗</a>
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ── WRITING ───────────────────────────────────────────── -->
+  <section class="section" id="writing">
+    <div class="sec-head r">
+      <span class="sec-label">Writing</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="post-card r">
+      <div class="post-meta">
+        <span class="post-tag">Engineering</span>
+        <span class="post-date">May 2026 · 3 min read</span>
+      </div>
+      <div class="post-title">AI and the monorepo question</div>
+      <div class="post-body">
+        <p>Something I've noticed while working with AI-assisted development: AI seems to work better with monorepos.</p>
+        <p>As humans, modular multi-repo setups feel cleaner. Separate services, clear ownership, obvious boundaries — easier to reason about what belongs where.</p>
+        <p>But for AI, context is everything. In a monorepo, the model sees shared types, packages, and helpers in one place, making it far easier to understand how a change in one part of the system ripples into another. With multiple repos, you can still feed the AI what it needs, but cross-repo dependencies are easy to miss unless you're deliberate about surfacing them.</p>
+        <p>The tradeoff feels different now:<br>
+        Multi-repo → cleaner for humans.<br>
+        Monorepo → easier for AI.</p>
+        <p>Whether that matters depends on your team size, architecture discipline, and how much you're leaning on AI tooling day-to-day. But if your answer to the last two is "a lot" — it might be worth reconsidering the default.</p>
+      </div>
     </div>
   </section>
 
@@ -558,7 +607,7 @@
             <span class="proj-year">2026</span>
           </div>
           <div class="proj-stack">Python · PyTorch · Kubernetes · Terraform · MLflow · Triton · Prometheus</div>
-          <div class="proj-desc">Cloud-native recommendation engine handling <strong>500K+ daily interactions</strong> with &lt;100ms latency during 5× traffic spikes. Kubernetes autoscaling, Terraform-provisioned infra, Triton inference server — built for production scale.</div>
+          <div class="proj-desc">The hard part was keeping latency under 100ms during 5× traffic spikes without pre-scaling. Solved with Kubernetes HPA tuned to real request patterns and Triton for batched GPU inference. Handles <strong>500K+ daily interactions</strong>.</div>
           <div class="proj-links">
             <a href="https://github.com/ypatodkar" target="_blank" class="proj-link">GitHub ↗</a>
           </div>
@@ -571,7 +620,7 @@
           <span class="proj-year">2025</span>
         </div>
         <div class="proj-stack">React · TypeScript · Gemini AI · AWS Lambda · Chart.js</div>
-        <div class="proj-desc">95% accurate stats across 5+ sports via Gemini AI with Search Grounding. Serverless backend handles 1,000+ monthly requests with 99.9% uptime.</div>
+        <div class="proj-desc">Sports stats go stale by the minute — used Gemini's Search Grounding to pull live data instead of a static dataset. 95% accuracy across 5 sports, serverless on Lambda, 99.9% uptime.</div>
         <div class="proj-links">
           <a href="https://main.d3218t3euk8dbo.amplifyapp.com/" target="_blank" class="proj-link">Live Demo ↗</a>
         </div>
@@ -583,7 +632,7 @@
           <span class="proj-year">2025</span>
         </div>
         <div class="proj-stack">React · Node.js · Express · PostgreSQL · AWS Lambda</div>
-        <div class="proj-desc">SOC platform analyzing Zscaler and Apache/Nginx logs with 10 anomaly-detection rules. Scores threats 0–1.0 with confidence levels, multi-user auth, real-time dashboards.</div>
+        <div class="proj-desc">Designing threat scoring that's useful — not just "is this bad?" but "how confident are we and why?" Built 10 anomaly-detection rules across Zscaler and Nginx logs, scoring 0–1.0 with confidence levels for SOC triage.</div>
         <div class="proj-links">
           <a href="https://main.djqvks4i9xlkw.amplifyapp.com" target="_blank" class="proj-link">Live Demo ↗</a>
           <a href="https://github.com/ypatodkar/threat-detection-zscaler" target="_blank" class="proj-link">GitHub ↗</a>
@@ -596,7 +645,7 @@
           <span class="proj-year">2025</span>
         </div>
         <div class="proj-stack">Python · Flask · React · Gemini AI · Google Docs API · OAuth 2.0</div>
-        <div class="proj-desc">AI-powered resume optimizer using Gemini to extract job-description keywords and auto-apply targeted edits directly into Google Docs — preserving all formatting.</div>
+        <div class="proj-desc">Google Docs formatting is notoriously fragile. The hard part was using the Docs API to apply AI-suggested edits without collapsing spacing, fonts, or section structure. Gemini extracts the keywords; the edits land cleanly.</div>
         <div class="proj-links">
           <a href="https://main.d1hmnkmby0w01s.amplifyapp.com/" target="_blank" class="proj-link">Live Demo ↗</a>
           <a href="https://github.com/ypatodkar/resume-auto-editor" target="_blank" class="proj-link">GitHub ↗</a>
@@ -609,7 +658,7 @@
           <span class="proj-year">2025</span>
         </div>
         <div class="proj-stack">Flask · React · Mistral LLM · ChromaDB · RAG · MongoDB</div>
-        <div class="proj-desc">Mental-health tracker identifying cognitive distortions in journal entries via RAG over psychiatric literature. Fully on-device. 95% parity with ChatGPT. <strong>Best Grad Hack — Hack for Humanity 2025.</strong></div>
+        <div class="proj-desc">Running a capable LLM fully on-device — no API, no cloud — and getting it to reliably identify cognitive distortions was the core challenge. RAG over five psychiatric books kept it grounded. Matched ChatGPT on our eval. <strong>Best Grad Hack — Hack for Humanity 2025.</strong></div>
         <div class="proj-links">
           <a href="https://devpost.com/software/re-mind-ai" target="_blank" class="proj-link">Devpost ↗</a>
         </div>
@@ -621,7 +670,7 @@
           <span class="proj-year">2024</span>
         </div>
         <div class="proj-stack">Flask · React · LangChain · FAISS · NVIDIA Nemotron · GitHub API</div>
-        <div class="proj-desc">AI-powered PR review with LLM automation and RAG over codebases. 60% less manual review effort, 40% faster turnaround, 85% accuracy on feedback.</div>
+        <div class="proj-desc">The tricky part: giving the LLM enough codebase context to review a PR meaningfully without blowing the context window. Used FAISS to index the repo and retrieve only relevant files per diff. 60% less manual review, 85% accuracy.</div>
         <div class="proj-links">
           <a href="https://github.com/ypatodkar" target="_blank" class="proj-link">GitHub ↗</a>
         </div>
@@ -633,7 +682,7 @@
           <span class="proj-year">2024</span>
         </div>
         <div class="proj-stack">React · Gemini AI · Adobe Express API</div>
-        <div class="proj-desc">Adobe Express add-on generating full slide decks from a single prompt using Gemini. Reduces presentation creation from hours to minutes. <strong>Hackathon Winner — Creators Corner.</strong></div>
+        <div class="proj-desc">Getting Gemini to produce a coherent slide narrative — not just bullet points — required careful prompt engineering around story arc and visual hierarchy. Built as an Adobe Express add-on. <strong>Hackathon Winner — Creators Corner.</strong></div>
         <div class="proj-links">
           <a href="https://devpost.com/software/storytelling-powered-by-ai" target="_blank" class="proj-link">Devpost ↗</a>
         </div>
@@ -645,7 +694,7 @@
           <span class="proj-year">2024</span>
         </div>
         <div class="proj-stack">Spring Boot · React · MySQL · Docker · Spring Security</div>
-        <div class="proj-desc">Full-stack booking platform with RBAC, seat selection, and secure payment simulation. Layered backend architecture containerized with Docker.</div>
+        <div class="proj-desc">Preventing double-bookings under concurrent requests was the interesting problem — solved with optimistic locking at the DB level. RBAC, seat selection, payment simulation, fully containerized with Docker.</div>
         <div class="proj-links">
           <a href="https://youtu.be/K_dCg9T8tFA?t=68" target="_blank" class="proj-link">Demo ↗</a>
         </div>
