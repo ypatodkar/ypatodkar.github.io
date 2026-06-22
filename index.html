@@ -120,6 +120,30 @@
     .post-body { font-size: 0.875rem; color: var(--t2); line-height: 1.8; }
     .post-body p { margin-bottom: 13px; }
     .post-body p:last-child { margin-bottom: 0; }
+    .post-card-link { display: block; text-decoration: none; color: inherit; }
+    .post-footer { margin-top: 16px; font-size: 0.78rem; color: var(--accent); font-weight: 600; }
+
+    .thought-card {
+      border: 1.5px solid var(--border); border-radius: 12px;
+      padding: 22px 28px; display: flex; flex-direction: column; gap: 10px;
+      transition: border-color 0.2s, transform 0.15s; margin-top: 12px;
+    }
+    .thought-label {
+      font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.8px; color: var(--t3);
+    }
+    .thought-quote {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem; font-style: italic; color: var(--text);
+      line-height: 1.55; margin: 0; border: none; padding: 0;
+    }
+
+    .grad-photo {
+      width: 80px; height: 80px; border-radius: 10px;
+      object-fit: cover; object-position: center top;
+      flex-shrink: 0; border: 1px solid var(--border);
+    }
+    .edu-caption { font-size: 0.78rem; font-style: italic; color: var(--t3); margin-top: 5px; }
     .hero-facts {
       display: flex; flex-wrap: wrap; gap: 4px 20px;
       font-size: 0.8rem; color: var(--t3); margin-bottom: 24px;
@@ -566,21 +590,31 @@
       <div class="sec-line"></div>
     </div>
 
-    <div class="post-card r">
-      <div class="post-meta">
-        <span class="post-tag">Engineering</span>
-        <span class="post-date">May 2026 · 3 min read</span>
+    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7460865761641938944/" target="_blank" rel="noopener" class="post-card-link r">
+      <div class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Engineering</span>
+          <span class="post-date">May 2026 · 3 min read</span>
+        </div>
+        <div class="post-title">AI and the monorepo question</div>
+        <div class="post-body">
+          <p>Something I've noticed while working with AI-assisted development: AI seems to work better with monorepos.</p>
+          <p>As humans, modular multi-repo setups feel cleaner. Separate services, clear ownership, obvious boundaries — easier to reason about what belongs where.</p>
+          <p>But for AI, context is everything. In a monorepo, the model sees shared types, packages, and helpers in one place, making it far easier to understand how a change in one part of the system ripples into another. With multiple repos, you can still feed the AI what it needs, but cross-repo dependencies are easy to miss unless you're deliberate about surfacing them.</p>
+          <p>The tradeoff feels different now:<br>
+          Multi-repo → cleaner for humans.<br>
+          Monorepo → easier for AI.</p>
+          <p>Whether that matters depends on your team size, architecture discipline, and how much you're leaning on AI tooling day-to-day. But if your answer to the last two is "a lot" — it might be worth reconsidering the default.</p>
+        </div>
+        <div class="post-footer">Read on LinkedIn ↗</div>
       </div>
-      <div class="post-title">AI and the monorepo question</div>
-      <div class="post-body">
-        <p>Something I've noticed while working with AI-assisted development: AI seems to work better with monorepos.</p>
-        <p>As humans, modular multi-repo setups feel cleaner. Separate services, clear ownership, obvious boundaries — easier to reason about what belongs where.</p>
-        <p>But for AI, context is everything. In a monorepo, the model sees shared types, packages, and helpers in one place, making it far easier to understand how a change in one part of the system ripples into another. With multiple repos, you can still feed the AI what it needs, but cross-repo dependencies are easy to miss unless you're deliberate about surfacing them.</p>
-        <p>The tradeoff feels different now:<br>
-        Multi-repo → cleaner for humans.<br>
-        Monorepo → easier for AI.</p>
-        <p>Whether that matters depends on your team size, architecture discipline, and how much you're leaning on AI tooling day-to-day. But if your answer to the last two is "a lot" — it might be worth reconsidering the default.</p>
-      </div>
+    </a>
+
+    <div class="thought-card r d1">
+      <div class="thought-label">Thought</div>
+      <blockquote class="thought-quote">
+        "Use AI like an army of high-IQ interns. Not like an expert you're trying to catch being wrong."
+      </blockquote>
     </div>
   </section>
 
@@ -736,11 +770,13 @@
       <div class="sec-line"></div>
     </div>
     <div class="edu-list r">
-      <div class="edu-item">
-        <div>
+      <div class="edu-item" style="align-items:center; gap:18px;">
+        <img src="images/image.png" alt="SCU Graduation" class="grad-photo">
+        <div style="flex:1;">
           <div class="edu-deg">Master of Science in Computer Science</div>
           <div class="edu-sch">Santa Clara University</div>
           <div class="edu-gpa">GPA 3.7 / 4.0</div>
+          <div class="edu-caption">Felt less like a roller coaster, more like a SpaceX rocket. 🚀</div>
         </div>
         <div class="edu-r">Sep 2024 – Jun 2026<br>Santa Clara, CA</div>
       </div>
