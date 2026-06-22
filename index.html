@@ -6,23 +6,23 @@
   <title>Yash Patodkar — Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #ffffff;
-      --bg2:      #f5f4ff;
-      --bg3:      #f8f9fc;
-      --text:     #0f172a;
-      --t2:       #475569;
-      --t3:       #94a3b8;
-      --border:   #e2e8f0;
-      --accent:   #6366f1;
-      --accent-s: rgba(99,102,241,0.09);
-      --accent-m: rgba(99,102,241,0.18);
-      --green:    #10b981;
-      --green-s:  rgba(16,185,129,0.1);
+      --bg:       #faf8f5;
+      --bg2:      #f2ede7;
+      --bg3:      #ece7e1;
+      --text:     #1a1714;
+      --t2:       #5c4f44;
+      --t3:       #9c8e84;
+      --border:   #e2d9d0;
+      --accent:   #8b5e3c;
+      --accent-s: rgba(139,94,60,0.08);
+      --accent-m: rgba(139,94,60,0.18);
+      --green:    #2d7d52;
+      --green-s:  rgba(45,125,82,0.1);
     }
 
     html { scroll-behavior: smooth; }
@@ -53,18 +53,18 @@
       padding: 5px 10px; border-radius: 6px;
       transition: background 0.15s, color 0.15s;
     }
-    .nav-links a:hover { background: var(--bg2); color: var(--accent); }
+    .nav-links a:hover { background: var(--accent-s); color: var(--accent); }
     .nav-resume {
       background: var(--accent) !important;
       color: #fff !important;
       font-weight: 600 !important;
     }
-    .nav-resume:hover { background: #4f52d3 !important; color: #fff !important; }
+    .nav-resume:hover { background: #6b4423 !important; color: #fff !important; }
 
     /* ── HERO ─────────────────────────────────────────────── */
     .hero {
       background: var(--bg2);
-      border-bottom: 1px solid #dddcfd;
+      border-bottom: 1px solid #ddd4c8;
     }
     .hero-inner {
       max-width: 880px; margin: 0 auto; padding: 52px 28px 48px;
@@ -86,7 +86,8 @@
     @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
 
     .hero-name {
-      font-size: 2.9rem; font-weight: 800; letter-spacing: -1.5px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 3rem; font-weight: 800; letter-spacing: -0.5px;
       line-height: 1.05; margin-bottom: 10px; color: var(--text);
     }
     .hero-role { font-size: 1rem; color: var(--t2); margin-bottom: 20px; }
@@ -109,14 +110,14 @@
     }
     .hero-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-s); }
     .hero-link.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-    .hero-link.primary:hover { background: #4f52d3; border-color: #4f52d3; color: #fff; }
+    .hero-link.primary:hover { background: #6b4423; border-color: #6b4423; color: #fff; }
 
     .hero-photo {
       width: 160px; height: 160px; border-radius: 14px;
       object-fit: cover; object-position: center top;
       flex-shrink: 0;
-      border: 2px solid #d4d3fc;
-      box-shadow: 0 8px 32px rgba(99,102,241,0.14);
+      border: 2px solid #d4c4b0;
+      box-shadow: 0 8px 32px rgba(139,94,60,0.14);
     }
 
     /* ── LAYOUT ───────────────────────────────────────────── */
@@ -175,7 +176,7 @@
     .exp-chips { display: flex; flex-wrap: wrap; gap: 6px; }
     .chip {
       font-size: 0.72rem; font-weight: 500; padding: 2px 9px; border-radius: 5px;
-      background: var(--accent-s); color: #4648c8; border: 1px solid var(--accent-m);
+      background: var(--accent-s); color: #6b4423; border: 1px solid var(--accent-m);
     }
 
     /* ── PROJECTS ─────────────────────────────────────────── */
@@ -198,7 +199,7 @@
     }
     .proj-card:hover {
       border-color: var(--accent);
-      box-shadow: 0 6px 28px rgba(99,102,241,0.1);
+      box-shadow: 0 6px 28px rgba(139,94,60,0.1);
       transform: translateY(-3px);
     }
     .proj-card.hidden { display: none; }
@@ -220,7 +221,7 @@
       font-size: 0.78rem; font-weight: 600; color: var(--accent);
       text-decoration: underline; text-underline-offset: 3px; transition: color 0.15s;
     }
-    .proj-link:hover { color: #4648c8; }
+    .proj-link:hover { color: #6b4423; }
 
     /* ── SKILLS ───────────────────────────────────────────── */
     .sk-grid { display: grid; grid-template-columns: 120px 1fr; }
@@ -359,10 +360,11 @@
     <div class="hero-text">
       <div class="hero-status ha a1"><span class="hero-dot"></span>Currently at Tenex.ai</div>
       <h1 class="hero-name ha a2">Yash<br>Patodkar</h1>
-      <p class="hero-role ha a3">Software Engineer · <strong>Go backends &amp; AI systems</strong></p>
+      <p class="hero-role ha a3">Software Engineer · <strong>Tenex.ai</strong></p>
       <p class="hero-desc ha a4">
-        2+ years shipping FortiSOAR features used by enterprise SOC teams at Fortinet.
-        Now at Tenex.ai building multi-agent security infrastructure.
+        I write Go, think in systems, and like problems that are actually hard.
+        2+ years at Fortinet building enterprise security products used by SOC teams worldwide —
+        now at Tenex.ai shipping multi-agent infrastructure.
         MS CS at Santa Clara University.
       </p>
       <div class="hero-facts ha a5">
