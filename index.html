@@ -174,6 +174,33 @@
     .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--t3); }
 
     .exp-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    /* ── OPEN SOURCE ──────────────────────────────────────── */
+    .oss-list { display: flex; flex-direction: column; }
+    .oss-item {
+      padding: 20px 0; border-bottom: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 9px;
+    }
+    .oss-item:first-child { border-top: 1px solid var(--border); }
+    .oss-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .oss-name {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.88rem; font-weight: 600; color: var(--text);
+      transition: color 0.15s;
+    }
+    .oss-name:hover { color: var(--accent); text-decoration: none; }
+    .oss-badge {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
+      color: var(--accent); background: var(--accent-s); border: 1px solid var(--accent-m);
+      padding: 1px 7px; border-radius: 4px;
+    }
+    .oss-meta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .oss-lang { font-size: 0.76rem; color: var(--t3); display: flex; align-items: center; gap: 5px; }
+    .oss-lang-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .oss-stars { font-size: 0.76rem; color: var(--t3); }
+    .oss-desc { font-size: 0.875rem; color: var(--t2); line-height: 1.65; max-width: 600px; }
+    .oss-links { display: flex; gap: 14px; }
+
     .chip {
       font-size: 0.72rem; font-weight: 500; padding: 2px 9px; border-radius: 5px;
       background: var(--accent-s); color: #6b4423; border: 1px solid var(--accent-m);
@@ -347,6 +374,7 @@
     <a href="#" class="nav-name">Yash Patodkar</a>
     <nav class="nav-links">
       <a href="#experience">Experience</a>
+      <a href="#open-source">Open Source</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
       <a href="Yash Patodkar Resume.pdf" target="_blank" class="nav-resume">Résumé ↗</a>
@@ -460,6 +488,49 @@
         <span class="chip">Elasticsearch</span>
         <span class="chip">Python</span>
       </div>
+    </div>
+  </section>
+
+  <!-- ── OPEN SOURCE ──────────────────────────────────────── -->
+  <section class="section" id="open-source">
+    <div class="sec-head r">
+      <span class="sec-label">Open Source</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="oss-list">
+
+      <div class="oss-item r">
+        <div class="oss-top">
+          <a href="https://github.com/zed-industries/zed" target="_blank" class="oss-name">zed-industries / zed</a>
+          <span class="oss-badge">Contributor</span>
+        </div>
+        <div class="oss-meta">
+          <span class="oss-lang"><span class="oss-lang-dot" style="background:#dea584"></span>Rust</span>
+          <span class="oss-stars">★ 85.7k</span>
+        </div>
+        <p class="oss-desc">High-performance, multiplayer code editor from the creators of Atom and Tree-sitter. Written entirely in Rust with a custom GPU-rendered UI framework (GPUI), giving it near-native speed. Supports real-time collaboration, LSP, and a growing extension ecosystem.</p>
+        <div class="oss-links">
+          <a href="https://github.com/zed-industries/zed" target="_blank" class="proj-link">View repo ↗</a>
+        </div>
+      </div>
+
+      <div class="oss-item r d1">
+        <div class="oss-top">
+          <a href="https://github.com/lingdojo/kana-dojo" target="_blank" class="oss-name">lingdojo / kana-dojo</a>
+          <span class="oss-badge">Contributor</span>
+        </div>
+        <div class="oss-meta">
+          <span class="oss-lang"><span class="oss-lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="oss-stars">★ 2.7k</span>
+        </div>
+        <p class="oss-desc">Aesthetic, minimalist platform for learning Japanese kana — think Duolingo meets Monkeytype. Built with Next.js and sponsored by Vercel. Beginner-friendly codebase with active community contributions.</p>
+        <div class="oss-links">
+          <a href="https://github.com/lingdojo/kana-dojo" target="_blank" class="proj-link">View repo ↗</a>
+          <a href="https://github.com/ypatodkar/kana-dojo" target="_blank" class="proj-link">My fork ↗</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
