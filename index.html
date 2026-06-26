@@ -8,423 +8,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:       #faf8f5;
-      --bg2:      #f2ede7;
-      --bg3:      #ece7e1;
-      --text:     #1a1714;
-      --t2:       #5c4f44;
-      --t3:       #9c8e84;
-      --border:   #e2d9d0;
-      --accent:   #8b5e3c;
-      --accent-s: rgba(139,94,60,0.08);
-      --accent-m: rgba(139,94,60,0.18);
-      --green:    #2d7d52;
-      --green-s:  rgba(45,125,82,0.1);
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
     }
-
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 15px; line-height: 1.65;
-      color: var(--text); background: var(--bg);
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: var(--text); text-decoration: none; }
-
-    /* ── NAV ──────────────────────────────────────────────── */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: 880px; margin: 0 auto; padding: 0 28px;
-      display: flex; justify-content: space-between; align-items: center;
-      height: 54px;
-    }
-    .nav-name { font-weight: 700; font-size: 0.9rem; }
-    .nav-links { display: flex; gap: 6px; }
-    .nav-links a {
-      font-size: 0.82rem; font-weight: 500; color: var(--t2);
-      padding: 5px 10px; border-radius: 6px;
-      transition: background 0.15s, color 0.15s;
-    }
-    .nav-links a:hover { background: var(--accent-s); color: var(--accent); }
-    .nav-resume {
-      background: var(--accent) !important;
-      color: #fff !important;
-      font-weight: 600 !important;
-    }
-    .nav-resume:hover { background: #6b4423 !important; color: #fff !important; }
-
-    /* ── HERO ─────────────────────────────────────────────── */
-    .hero {
-      background: var(--bg2);
-      border-bottom: 1px solid #ddd4c8;
-    }
-    .hero-inner {
-      max-width: 880px; margin: 0 auto; padding: 52px 28px 48px;
-      display: flex; justify-content: space-between; align-items: flex-start; gap: 48px;
-    }
-    .hero-text { flex: 1; }
-
-    .hero-status {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px;
-      color: var(--green); background: var(--green-s);
-      border: 1px solid rgba(16,185,129,0.2);
-      padding: 3px 10px; border-radius: 20px; margin-bottom: 16px;
-    }
-    .hero-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--green);
-      animation: blink 2s infinite;
-    }
-    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-    .hero-name {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 3rem; font-weight: 800; letter-spacing: -0.5px;
-      line-height: 1.05; margin-bottom: 10px; color: var(--text);
-    }
-    .hero-role { font-size: 1rem; color: var(--t2); margin-bottom: 20px; }
-    .hero-role strong { color: var(--accent); font-weight: 600; }
-
-    .hero-tagline {
-      font-size: 0.95rem; color: var(--t3); font-style: italic;
-      margin-bottom: 10px; letter-spacing: 0.1px;
-    }
-    .hero-desc {
-      font-size: 0.94rem; color: var(--t2); line-height: 1.78;
-      margin-bottom: 22px; max-width: 420px;
-    }
-
-    /* ── WRITING ──────────────────────────────────────────── */
-    .post-card {
-      border: 1.5px solid var(--border); border-radius: 12px;
-      padding: 26px 30px;
-      transition: border-color 0.2s, transform 0.15s;
-    }
-    .post-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
-    .post-tag {
-      font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
-      color: var(--accent); background: var(--accent-s); border: 1px solid var(--accent-m);
-      padding: 2px 8px; border-radius: 4px;
-    }
-    .post-date { font-size: 0.76rem; color: var(--t3); }
-    .post-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 14px; line-height: 1.3; color: var(--text); }
-    .post-body { font-size: 0.875rem; color: var(--t2); line-height: 1.8; }
-    .post-body p { margin-bottom: 13px; }
-    .post-body p:last-child { margin-bottom: 0; }
-    .post-card-link { display: block; text-decoration: none; color: inherit; }
-    .post-footer { margin-top: 16px; font-size: 0.78rem; color: var(--accent); font-weight: 600; }
-
-    .thought-card {
-      border: 1.5px solid var(--border); border-radius: 12px;
-      padding: 22px 28px; display: flex; flex-direction: column; gap: 10px;
-      transition: border-color 0.2s, transform 0.15s; margin-top: 12px;
-    }
-    .thought-label {
-      font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.8px; color: var(--t3);
-    }
-    .thought-quote {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.05rem; font-style: italic; color: var(--text);
-      line-height: 1.55; margin: 0; border: none; padding: 0;
-    }
-
-    .grad-photo {
-      width: 80px; height: 80px; border-radius: 10px;
-      object-fit: cover; object-position: center top;
-      flex-shrink: 0; border: 1px solid var(--border);
-    }
-    .edu-caption { font-size: 0.78rem; font-style: italic; color: var(--t3); margin-top: 5px; }
-    .hero-facts {
-      display: flex; flex-wrap: wrap; gap: 4px 20px;
-      font-size: 0.8rem; color: var(--t3); margin-bottom: 24px;
-    }
-    .hero-links { display: flex; flex-wrap: wrap; gap: 10px; }
-    .hero-link {
-      font-size: 0.83rem; font-weight: 600;
-      padding: 7px 16px; border-radius: 7px;
-      border: 1.5px solid var(--border);
-      color: var(--t2); transition: border-color 0.15s, color 0.15s, background 0.15s;
-    }
-    .hero-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-s); }
-    .hero-link.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-    .hero-link.primary:hover { background: #6b4423; border-color: #6b4423; color: #fff; }
-
-    .hero-photo {
-      width: 160px; height: 160px; border-radius: 14px;
-      object-fit: cover; object-position: center top;
-      flex-shrink: 0;
-      border: 2px solid #d4c4b0;
-      box-shadow: 0 8px 32px rgba(139,94,60,0.14);
-    }
-
-    /* ── LAYOUT ───────────────────────────────────────────── */
-    .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
-    .section { padding: 48px 0; border-top: 1px solid var(--border); }
-
-    .sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
-    .sec-label {
-      font-size: 0.68rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
-      white-space: nowrap;
-    }
-    .sec-line { flex: 1; height: 1px; background: var(--border); }
-
-    /* ── EXPERIENCE ───────────────────────────────────────── */
-    .exp-item {
-      border-top: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      padding-left: 20px; margin-left: -20px;
-      padding-bottom: 36px;
-    }
-    .exp-item + .exp-item { margin-top: 4px; }
-
-    .exp-header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 18px 0 14px; gap: 12px;
-    }
-
-    .exp-lhs { display: flex; align-items: center; gap: 12px; min-width: 0; flex-wrap: wrap; }
-    .exp-co { font-weight: 700; font-size: 1rem; white-space: nowrap; }
-    .exp-sep { color: var(--border); }
-    .exp-role-label { font-size: 0.875rem; color: var(--t2); }
-
-    .exp-rhs { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-    .exp-now {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 0.68rem; font-weight: 700; color: var(--green);
-      text-transform: uppercase; letter-spacing: 0.5px;
-      background: var(--green-s); border: 1px solid rgba(16,185,129,0.2);
-      padding: 2px 8px; border-radius: 20px;
-    }
-    .exp-now-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: blink 2s infinite; }
-    .exp-date-label { font-size: 0.8rem; color: var(--t3); white-space: nowrap; }
-
-    .exp-location { font-size: 0.78rem; color: var(--t3); margin-bottom: 16px; }
-
-    .exp-kpis { display: flex; gap: 28px; margin-bottom: 18px; flex-wrap: wrap; }
-    .exp-kpi { display: flex; flex-direction: column; gap: 2px; }
-    .kpi-num { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px; line-height: 1; color: var(--accent); }
-    .kpi-lbl { font-size: 0.64rem; color: var(--t3); text-transform: uppercase; letter-spacing: 0.6px; }
-
-    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 16px; }
-    .exp-bullets li { font-size: 0.88rem; color: var(--t2); line-height: 1.7; padding-left: 14px; position: relative; }
-    .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--t3); }
-
-    .exp-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    /* ── OPEN SOURCE ──────────────────────────────────────── */
-    .oss-list { display: flex; flex-direction: column; }
-    .oss-item {
-      padding: 20px 0; border-bottom: 1px solid var(--border);
-      display: flex; flex-direction: column; gap: 9px;
-    }
-    .oss-item:first-child { border-top: 1px solid var(--border); }
-    .oss-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .oss-name {
-      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-      font-size: 0.88rem; font-weight: 600; color: var(--text);
-      transition: color 0.15s;
-    }
-    .oss-name:hover { color: var(--accent); text-decoration: none; }
-    .oss-badge {
-      font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
-      color: var(--accent); background: var(--accent-s); border: 1px solid var(--accent-m);
-      padding: 1px 7px; border-radius: 4px;
-    }
-    .oss-meta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-    .oss-lang { font-size: 0.76rem; color: var(--t3); display: flex; align-items: center; gap: 5px; }
-    .oss-lang-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .oss-stars { font-size: 0.76rem; color: var(--t3); }
-    .oss-desc { font-size: 0.875rem; color: var(--t2); line-height: 1.65; max-width: 600px; }
-    .oss-links { display: flex; gap: 14px; }
-
-    .chip {
-      font-size: 0.72rem; font-weight: 500; padding: 2px 9px; border-radius: 5px;
-      background: var(--accent-s); color: #6b4423; border: 1px solid var(--accent-m);
-    }
-
-    /* ── PROJECTS ─────────────────────────────────────────── */
-    .ytabs { display: flex; gap: 6px; margin-bottom: 22px; flex-wrap: wrap; }
-    .ytab {
-      padding: 5px 14px; border-radius: 7px; border: 1.5px solid var(--border);
-      background: none; font-size: 0.78rem; font-weight: 600;
-      color: var(--t2); cursor: pointer; font-family: inherit; transition: all 0.15s;
-    }
-    .ytab:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-s); }
-    .ytab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-    .proj-card {
-      border: 1.5px solid var(--border); border-radius: 10px; padding: 18px 20px;
-      display: flex; flex-direction: column; gap: 7px;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-      background: var(--bg);
-    }
-    .proj-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 6px 28px rgba(139,94,60,0.1);
-      transform: translateY(-3px);
-    }
-    .proj-card.hidden { display: none; }
-    .proj-card.feat { grid-column: span 2; flex-direction: row; gap: 24px; }
-    .proj-left { flex: 1; display: flex; flex-direction: column; gap: 7px; }
-    .proj-right { flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-end; }
-
-    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
-    .proj-name { font-weight: 700; font-size: 0.92rem; line-height: 1.3; }
-    .proj-year {
-      font-size: 0.68rem; font-weight: 700; flex-shrink: 0;
-      color: var(--accent); background: var(--accent-s); border: 1px solid var(--accent-m);
-      padding: 1px 7px; border-radius: 4px;
-    }
-    .proj-stack { font-size: 0.76rem; color: var(--t3); line-height: 1.5; }
-    .proj-desc { font-size: 0.84rem; color: var(--t2); line-height: 1.65; flex: 1; }
-    .proj-links { display: flex; gap: 12px; margin-top: 4px; }
-    .proj-link {
-      font-size: 0.78rem; font-weight: 600; color: var(--accent);
-      text-decoration: underline; text-underline-offset: 3px; transition: color 0.15s;
-    }
-    .proj-link:hover { color: #6b4423; }
-
-    /* ── SKILLS ───────────────────────────────────────────── */
-    .sk-grid { display: grid; grid-template-columns: 120px 1fr; }
-    .sk-row { display: contents; }
-    .sk-cat {
-      padding: 13px 0; border-bottom: 1px solid var(--border);
-      font-size: 0.74rem; font-weight: 600; color: var(--accent);
-      text-transform: uppercase; letter-spacing: 0.8px;
-      display: flex; align-items: flex-start; padding-top: 16px;
-    }
-    .sk-val { padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 0.875rem; color: var(--t2); line-height: 1.72; }
-    .sk-row:last-child .sk-cat, .sk-row:last-child .sk-val { border-bottom: none; }
-
-    /* ── EDUCATION ────────────────────────────────────────── */
-    .edu-list { display: flex; flex-direction: column; }
-    .edu-item {
-      display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
-      padding: 15px 0; border-bottom: 1px solid var(--border);
-    }
-    .edu-item:first-child { border-top: 1px solid var(--border); }
-    .edu-deg { font-weight: 700; font-size: 0.9rem; margin-bottom: 3px; }
-    .edu-sch { font-size: 0.82rem; color: var(--t2); }
-    .edu-gpa {
-      display: inline-block; margin-top: 6px;
-      font-size: 0.72rem; font-weight: 700; color: var(--green);
-      background: var(--green-s); border: 1px solid rgba(16,185,129,0.2);
-      padding: 2px 8px; border-radius: 5px;
-    }
-    .edu-r { text-align: right; flex-shrink: 0; font-size: 0.8rem; color: var(--t3); line-height: 1.6; }
-
-    /* ── RECOGNITION ──────────────────────────────────────── */
-    .recog-list { display: flex; flex-direction: column; }
-    .recog-item {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 14px 0; border-bottom: 1px solid var(--border);
-    }
-    .recog-item:first-child { border-top: 1px solid var(--border); }
-    .recog-badge {
-      flex-shrink: 0; margin-top: 1px; width: 34px; height: 34px; border-radius: 8px;
-      background: var(--accent-s); border: 1px solid var(--accent-m);
-      display: flex; align-items: center; justify-content: center; font-size: 1rem;
-    }
-    .recog-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 3px; }
-    .recog-sub { font-size: 0.82rem; color: var(--t2); line-height: 1.55; }
-
-    /* ── VOLUNTEERING ─────────────────────────────────────── */
-    .vol-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .vol-tag {
-      font-size: 0.78rem; font-weight: 500; color: var(--t2);
-      padding: 4px 13px; border-radius: 20px;
-      border: 1px solid var(--border); background: var(--bg);
-      transition: border-color 0.15s, color 0.15s;
-    }
-    .vol-tag:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ── CONTACT ──────────────────────────────────────────── */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .contact-card {
-      border: 1.5px solid var(--border); border-radius: 10px; padding: 16px 18px;
-      transition: all 0.15s; display: flex; flex-direction: column; gap: 3px;
-    }
-    .contact-card:hover { border-color: var(--accent); background: var(--accent-s); transform: translateY(-2px); }
-    .contact-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--t3); }
-    .contact-val { font-size: 0.9rem; font-weight: 600; color: var(--text); }
-
-    .hero-link.icon-link { display: inline-flex; align-items: center; gap: 7px; }
-    .hero-link.icon-link svg { flex-shrink: 0; }
-
-    .social-links { display: flex; gap: 12px; flex-wrap: wrap; }
-    .social-card {
-      display: flex; align-items: center; gap: 16px;
-      border: 1.5px solid var(--border); border-radius: 12px;
-      padding: 16px 22px; flex: 1; min-width: 180px;
-      transition: border-color 0.2s, background 0.2s, transform 0.2s;
-    }
-    .social-card:hover { border-color: var(--accent); background: var(--accent-s); transform: translateY(-2px); }
-    .social-card svg { flex-shrink: 0; color: var(--text); transition: color 0.2s; }
-    .social-card:hover svg { color: var(--accent); }
-    .social-name { font-weight: 700; font-size: 0.92rem; color: var(--text); margin-bottom: 1px; }
-    .social-handle { font-size: 0.78rem; color: var(--t3); }
-
-    /* ── FOOTER ───────────────────────────────────────────── */
-    footer { border-top: 1px solid var(--border); background: var(--bg3); }
-    .foot-inner {
-      max-width: 880px; margin: 0 auto; padding: 20px 28px;
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.78rem; color: var(--t3);
-    }
-    .back-top { transition: color 0.15s; }
-    .back-top:hover { color: var(--accent); }
-
-    /* ── REVEAL ───────────────────────────────────────────── */
-    .r { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .r.in { opacity: 1; transform: none; }
-    .r.d1 { transition-delay: 0.07s; }
-    .r.d2 { transition-delay: 0.14s; }
-    .r.d3 { transition-delay: 0.21s; }
-    .r.d4 { transition-delay: 0.28s; }
-    .r.d5 { transition-delay: 0.35s; }
-    .r.d6 { transition-delay: 0.42s; }
-
-    .ha { opacity: 0; transform: translateY(16px); animation: heroFade 0.6s ease forwards; }
-    .ha.a1 { animation-delay: 0.05s; }
-    .ha.a2 { animation-delay: 0.15s; }
-    .ha.a3 { animation-delay: 0.25s; }
-    .ha.a4 { animation-delay: 0.35s; }
-    .ha.a5 { animation-delay: 0.45s; }
-    .ha.a6 { animation-delay: 0.55s; }
-    @keyframes heroFade { to { opacity: 1; transform: none; } }
-
-    /* ── RESPONSIVE ───────────────────────────────────────── */
-    @media (max-width: 640px) {
-      .hero-inner { flex-direction: column-reverse; gap: 20px; padding: 36px 20px 32px; }
-      .hero-name { font-size: 2.1rem; }
-      .hero-photo { width: 100px; height: 100px; align-self: flex-start; }
-      .proj-grid { grid-template-columns: 1fr; }
-      .proj-card.feat { grid-column: span 1; flex-direction: column; }
-      .sk-grid { grid-template-columns: 1fr; }
-      .sk-cat { border-bottom: none; padding-bottom: 2px; }
-      .edu-item { flex-direction: column; gap: 4px; }
-      .edu-r { text-align: left; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .nav-inner, .wrap { padding-left: 16px; padding-right: 16px; }
-      .exp-lhs { flex-wrap: wrap; gap: 4px; }
-    }
-  </style>
+  }
+  </script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 <body>
+
+<canvas id="sketch-canvas" aria-hidden="true"></canvas>
 
 <!-- ══ NAV ══════════════════════════════════════════════════ -->
 <header class="nav">
@@ -442,36 +39,34 @@
 
 <!-- ══ HERO ═════════════════════════════════════════════════ -->
 <section class="hero">
+
   <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-status ha a1"><span class="hero-dot"></span>Currently at Tenex.ai</div>
-      <h1 class="hero-name ha a2">Yash Patodkar</h1>
-      <p class="hero-tagline ha a3">Backend engineer. Go by day, Rust by curiosity.</p>
-      <p class="hero-role ha a3">Software Engineer · <strong>Tenex.ai</strong></p>
-      <p class="hero-desc ha a4">
-        2+ years at Fortinet on enterprise security, now at Tenex.ai building multi-agent infrastructure —
-        I write Go, think in distributed systems, and like problems that are actually hard.
-        Currently exploring how far AI agents can go before they need a human in the loop.
-      </p>
-      <div class="hero-facts ha a5">
-        <span>📍 Santa Clara, CA</span>
-        <span>GPA 3.7 / 4.0</span>
-        <span>3× Hackathon Winner</span>
-        <span>99.2%ile CDAC Exam</span>
-      </div>
-      <div class="hero-links ha a6">
-        <a href="https://linkedin.com/in/yash-patodkar" target="_blank" class="hero-link icon-link">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/ypatodkar" target="_blank" class="hero-link icon-link">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          GitHub
-        </a>
-        <a href="Yash Patodkar Resume.pdf" target="_blank" class="hero-link primary">Résumé ↗</a>
-      </div>
+    <div class="hero-status ha a1"><span class="hero-dot"></span>Currently at Tenex.ai</div>
+    <h1 class="hero-name ha a2">Yash Patodkar</h1>
+
+    <model-viewer
+      class="hero-3d ha a3"
+      src="images/shin-chan_and_shiro.glb"
+      interpolation-decay="0"
+      shadow-intensity="0"
+      exposure="1"
+      style="background: transparent; touch-action: none;">
+    </model-viewer>
+
+    <p class="hero-role ha a4">Software Engineer · 3+ years of experience</p>
+    <p class="hero-role ha a4" style="margin-bottom:26px;">Open source contributor · Building multi-agent AI at Tenex.ai</p>
+
+    <div class="hero-links ha a5">
+      <a href="https://linkedin.com/in/yash-patodkar" target="_blank" class="hero-link icon-link">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/ypatodkar" target="_blank" class="hero-link icon-link">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+      <a href="Yash Patodkar Resume.pdf" target="_blank" class="hero-link primary">Résumé ↗</a>
     </div>
-    <img class="hero-photo ha a2" src="images/1000005658.jpg" alt="Yash Patodkar">
   </div>
 </section>
 
@@ -480,132 +75,319 @@
 
   <!-- ── EXPERIENCE ───────────────────────────────────────── -->
   <section class="section" id="experience">
-    <div class="sec-head r">
-      <span class="sec-label">Experience</span>
+    <div class="sec-head sec-head-tl r">
+      <div class="sec-line"></div>
+      <span class="sec-label sec-label-lg">Experience</span>
       <div class="sec-line"></div>
     </div>
 
-    <div class="exp-item">
-      <div class="exp-header r">
-        <div class="exp-lhs">
-          <span class="exp-co">Tenex.ai</span>
-          <span class="exp-sep">·</span>
-          <span class="exp-role-label">Software Engineer</span>
-        </div>
-        <div class="exp-rhs">
-          <span class="exp-now"><span class="exp-now-dot"></span>Now</span>
-          <span class="exp-date-label">Apr 2026 – Present</span>
-        </div>
-      </div>
-      <div class="exp-location r d1">Santa Clara, CA</div>
-      <div class="exp-kpis r d1">
-        <div class="exp-kpi"><span class="kpi-num">50%</span><span class="kpi-lbl">Onboarding Effort ↓</span></div>
-      </div>
-      <ul class="exp-bullets">
-        <li class="r d2">Initiated and designed a vendor integration framework in Go that generates code from authentication types, API endpoints, and response schemas — reducing new integration onboarding effort by 50%.</li>
-        <li class="r d3">Built Go backend services for multi-agent security workflows, handling large volumes of operational data and improving reliability across data ingestion and analytics pipelines.</li>
-        <li class="r d4">Implemented a data-enrichment pipeline that aggregated context from multiple sources, enabling AI agents to make more informed threat-detection and triage decisions.</li>
-      </ul>
-      <div class="exp-chips r d5">
-        <span class="chip">Go</span>
-        <span class="chip">Multi-Agent AI</span>
-        <span class="chip">Backend Services</span>
-        <span class="chip">Data Pipelines</span>
-        <span class="chip">Security</span>
-      </div>
-    </div>
+    <div class="timeline" id="tl-experience">
+      <div class="tl-line"></div>
 
-    <div class="exp-item">
-      <div class="exp-header r">
-        <div class="exp-lhs">
-          <span class="exp-co">Fortinet</span>
-          <span class="exp-sep">·</span>
-          <span class="exp-role-label">Software Engineer</span>
+      <!-- Tenex.ai — RIGHT -->
+      <div class="tl-item tl-right r">
+        <div class="tl-spacer"></div>
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <span class="tl-date">Apr 2026</span>
         </div>
-        <div class="exp-rhs">
-          <span class="exp-date-label">May 2022 – Jun 2024</span>
+        <div class="tl-card">
+          <div class="exp-header">
+            <div class="exp-lhs">
+              <span class="exp-co">Tenex.ai</span>
+              <span class="exp-sep">·</span>
+              <span class="exp-role-label">Software Engineer</span>
+            </div>
+            <div class="exp-rhs">
+              <span class="exp-now"><span class="exp-now-dot"></span>Now</span>
+              <span class="exp-date-label">Apr 2026 – Present</span>
+            </div>
+          </div>
+          <div class="exp-location">Santa Clara, CA</div>
+          <div class="exp-kpis">
+            <div class="exp-kpi"><span class="kpi-num">50%</span><span class="kpi-lbl">Onboarding Effort ↓</span></div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Go codegen framework for vendor integrations; cut onboarding by 50%.</li>
+            <li>Go backend services for multi-agent security, boosting pipeline reliability.</li>
+            <li>Data-enrichment pipeline giving AI agents sharper threat-detection context.</li>
+          </ul>
+          <div class="exp-chips">
+            <span class="chip">Go</span>
+            <span class="chip">Multi-Agent AI</span>
+            <span class="chip">Backend Services</span>
+            <span class="chip">Data Pipelines</span>
+            <span class="chip">Security</span>
+          </div>
         </div>
       </div>
-      <div class="exp-location r d1">Pune, India</div>
-      <div class="exp-kpis r d1">
-        <div class="exp-kpi"><span class="kpi-num">85%</span><span class="kpi-lbl">AI Model Precision</span></div>
-        <div class="exp-kpi"><span class="kpi-num">30%</span><span class="kpi-lbl">Latency Reduced</span></div>
-        <div class="exp-kpi"><span class="kpi-num">500+</span><span class="kpi-lbl">Test Cases</span></div>
+
+      <!-- Fortinet — LEFT -->
+      <div class="tl-item tl-left r">
+        <div class="tl-card">
+          <div class="exp-header">
+            <div class="exp-lhs">
+              <span class="exp-co">Fortinet</span>
+              <span class="exp-sep">·</span>
+              <span class="exp-role-label">Software Engineer</span>
+            </div>
+            <div class="exp-rhs">
+              <span class="exp-date-label">May 2022 – Jun 2024</span>
+            </div>
+          </div>
+          <div class="exp-location">Pune, India</div>
+          <div class="exp-kpis">
+            <div class="exp-kpi"><span class="kpi-num">85%</span><span class="kpi-lbl">AI Model Precision</span></div>
+            <div class="exp-kpi"><span class="kpi-num">30%</span><span class="kpi-lbl">Latency Reduced</span></div>
+            <div class="exp-kpi"><span class="kpi-num">500+</span><span class="kpi-lbl">Test Cases</span></div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Built FortiSOAR AI Advisor; 85% precision across 500+ test cases.</li>
+            <li>Led Global Visibility Dashboard; designed consolidated APIs in Angular/C++.</li>
+            <li>Elasticsearch and SQL tuning cut universal search latency by 30%.</li>
+            <li>Owned API-Gateway and Notifier microservices for secure service routing.</li>
+          </ul>
+          <div class="exp-chips">
+            <span class="chip">Java</span>
+            <span class="chip">Spring Boot</span>
+            <span class="chip">Angular</span>
+            <span class="chip">C++</span>
+            <span class="chip">Elasticsearch</span>
+            <span class="chip">Python</span>
+          </div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <span class="tl-date">May 2022</span>
+        </div>
+        <div class="tl-spacer"></div>
       </div>
-      <ul class="exp-bullets">
-        <li class="r d2">Built FortiSOAR AI Advisor; validated AI model accuracy with 500+ test cases achieving 85% precision, demonstrating proficiency in ML model validation and software test engineering.</li>
-        <li class="r d3">Led delivery of the Global Visibility Dashboard using Angular and C++, designing consolidated APIs to reduce heavy frontend calls and optimize performance.</li>
-        <li class="r d4">Optimized large-scale system performance by tuning Elasticsearch and SQL query logic for universal search — reducing record retrieval latency by 30% across millions of records.</li>
-        <li class="r d5">Owned and enhanced Java microservices including the API-Gateway and Notifier services (Spring Boot), delivering secure request routing and service-to-service communication.</li>
-      </ul>
-      <div class="exp-chips r d6">
-        <span class="chip">Java</span>
-        <span class="chip">Spring Boot</span>
-        <span class="chip">Angular</span>
-        <span class="chip">C++</span>
-        <span class="chip">Elasticsearch</span>
-        <span class="chip">Python</span>
-      </div>
+
     </div>
   </section>
 
   <!-- ── OPEN SOURCE ──────────────────────────────────────── -->
   <section class="section" id="open-source">
-    <div class="sec-head r">
-      <span class="sec-label">Open Source</span>
+    <div class="sec-head sec-head-tl r">
+      <div class="sec-line"></div>
+      <span class="sec-label sec-label-lg">Open Source</span>
       <div class="sec-line"></div>
     </div>
 
-    <div class="oss-list">
+    <div class="timeline" id="tl-oss">
+      <div class="tl-line"></div>
 
-      <div class="oss-item r">
-        <div class="oss-top">
-          <a href="https://github.com/zed-industries/zed" target="_blank" class="oss-name">zed-industries / zed</a>
-          <span class="oss-badge">Contributor</span>
+      <!-- zed — RIGHT -->
+      <div class="tl-item tl-right r">
+        <div class="tl-spacer"></div>
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <span class="tl-date">Jun 2026</span>
         </div>
-        <div class="oss-meta">
-          <span class="oss-lang"><span class="oss-lang-dot" style="background:#dea584"></span>Rust</span>
-          <span class="oss-stars">★ 85.7k</span>
-        </div>
-        <p class="oss-desc">A Rust-native, GPU-rendered code editor built for speed and real-time collaboration — from the creators of Atom and Tree-sitter.</p>
-        <p class="oss-desc" style="margin-top:8px;">Fixed a bug in the Agent Panel where referencing the same file twice showed the full absolute path instead of a compact name — a subtle but jarring UX issue in AI-assisted editing (PR #59845, merged Jun 2026).</p>
-        <div class="oss-links">
-          <a href="https://github.com/zed-industries/zed/pull/59845" target="_blank" class="proj-link">PR #59845 — merged ↗</a>
-          <a href="https://github.com/zed-industries/zed/pull/59672" target="_blank" class="proj-link">PR #59672 — open ↗</a>
-          <a href="https://github.com/zed-industries/zed" target="_blank" class="proj-link">Repo ↗</a>
+        <div class="tl-card">
+          <div class="oss-top">
+            <a href="https://github.com/zed-industries/zed" target="_blank" class="oss-name">zed-industries / zed</a>
+            <span class="oss-badge">Contributor</span>
+          </div>
+          <div class="oss-meta">
+            <span class="oss-lang"><span class="oss-lang-dot" style="background:#dea584"></span>Rust</span>
+            <span class="oss-stars">★ 85.7k</span>
+          </div>
+          <p class="oss-desc">Rust-native, GPU-rendered editor built for speed and real-time collaboration. Made by the creators of Atom and Tree-sitter.</p>
+          <p class="oss-desc" style="margin-top:6px;">Fixed a duplicate-file-ref bug in the Agent Panel. Paths showed as full absolute instead of compact names. PR #59845, merged Jun 2026.</p>
+          <div class="oss-links">
+            <a href="https://github.com/zed-industries/zed/pull/59845" target="_blank" class="proj-link">PR #59845 — merged ↗</a>
+            <a href="https://github.com/zed-industries/zed/pull/59672" target="_blank" class="proj-link">PR #59672 — open ↗</a>
+            <a href="https://github.com/zed-industries/zed" target="_blank" class="proj-link">Repo ↗</a>
+          </div>
         </div>
       </div>
 
-      <div class="oss-item r d1">
-        <div class="oss-top">
-          <a href="https://github.com/lingdojo/kana-dojo" target="_blank" class="oss-name">lingdojo / kana-dojo</a>
-          <span class="oss-badge">Contributor</span>
+      <!-- kana-dojo — LEFT -->
+      <div class="tl-item tl-left r">
+        <div class="tl-card">
+          <div class="oss-top">
+            <a href="https://github.com/lingdojo/kana-dojo" target="_blank" class="oss-name">lingdojo / kana-dojo</a>
+            <span class="oss-badge">Contributor</span>
+          </div>
+          <div class="oss-meta">
+            <span class="oss-lang"><span class="oss-lang-dot" style="background:#3178c6"></span>TypeScript</span>
+            <span class="oss-stars">★ 2.7k</span>
+          </div>
+          <p class="oss-desc">Minimalist Japanese kana learning platform (Next.js, Vercel-sponsored). Contributed a Snow Pine theme in <code style="font-size:0.82rem;background:var(--bg2);padding:1px 5px;border-radius:3px">oklch()</code> color space. PR #6274, resolves issue #6270.</p>
+          <div class="oss-links">
+            <a href="https://github.com/lingdojo/kana-dojo/pull/6274" target="_blank" class="proj-link">PR #6274 — merged ↗</a>
+            <a href="https://github.com/lingdojo/kana-dojo" target="_blank" class="proj-link">Repo ↗</a>
+          </div>
         </div>
-        <div class="oss-meta">
-          <span class="oss-lang"><span class="oss-lang-dot" style="background:#3178c6"></span>TypeScript</span>
-          <span class="oss-stars">★ 2.7k</span>
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <span class="tl-date">2026</span>
         </div>
-        <p class="oss-desc">Aesthetic, minimalist platform for learning Japanese kana — think Duolingo meets Monkeytype. Built with Next.js and sponsored by Vercel. Contributed a Snow Pine color theme defined using modern <code style="font-size:0.82rem;background:var(--bg2);padding:1px 5px;border-radius:3px">oklch()</code> color space, resolving issue #6270.</p>
-        <div class="oss-links">
-          <a href="https://github.com/lingdojo/kana-dojo/pull/6274" target="_blank" class="proj-link">PR #6274 — merged ↗</a>
-          <a href="https://github.com/lingdojo/kana-dojo" target="_blank" class="proj-link">Repo ↗</a>
+        <div class="tl-spacer"></div>
+      </div>
+
+      <!-- tree-sitter — RIGHT -->
+      <div class="tl-item tl-right r">
+        <div class="tl-spacer"></div>
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <span class="tl-date">WIP</span>
+        </div>
+        <div class="tl-card">
+          <div class="oss-top">
+            <a href="https://github.com/tree-sitter/tree-sitter" target="_blank" class="oss-name">tree-sitter / tree-sitter</a>
+            <span class="oss-badge" style="color:var(--t2);background:var(--bg2);border-color:var(--border);">Fork · WIP</span>
+          </div>
+          <div class="oss-meta">
+            <span class="oss-lang"><span class="oss-lang-dot" style="background:#dea584"></span>Rust</span>
+            <span class="oss-stars">★ 25.9k</span>
+          </div>
+          <p class="oss-desc">Incremental parsing engine behind GitHub, Neovim, and Zed's syntax tools. Built by the Zed and Atom team. Actively exploring contributions on my fork.</p>
+          <div class="oss-links">
+            <a href="https://github.com/tree-sitter/tree-sitter" target="_blank" class="proj-link">Repo ↗</a>
+            <a href="https://github.com/ypatodkar/tree-sitter" target="_blank" class="proj-link">My fork ↗</a>
+          </div>
         </div>
       </div>
 
-      <div class="oss-item r d2">
-        <div class="oss-top">
-          <a href="https://github.com/tree-sitter/tree-sitter" target="_blank" class="oss-name">tree-sitter / tree-sitter</a>
-          <span class="oss-badge" style="color:var(--t2);background:var(--bg2);border-color:var(--border);">Fork · WIP</span>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ─────────────────────────────────────────── -->
+  <section class="section" id="projects">
+    <div class="sec-head sec-head-tl r">
+      <div class="sec-line"></div>
+      <span class="sec-label sec-label-lg">Projects</span>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="ytabs r" style="justify-content:center;">
+      <button class="ytab active" data-year="all">All</button>
+      <button class="ytab" data-year="2026">2026</button>
+      <button class="ytab" data-year="2025">2025</button>
+      <button class="ytab" data-year="2024">2024</button>
+    </div>
+
+    <div class="timeline" id="tl-projects">
+      <div class="tl-line"></div>
+
+      <div class="tl-item tl-right r" data-year="2026">
+        <div class="tl-spacer"></div>
+        <div class="tl-node"><div class="tl-dot"></div><span class="tl-date">2026</span></div>
+        <div class="tl-card">
+          <div class="proj-top">
+            <span class="proj-name">Movie Recommendation System</span>
+            <span class="proj-year">2026</span>
+          </div>
+          <div class="proj-stack">Python · PyTorch · Kubernetes · Terraform · MLflow · Triton · Prometheus</div>
+          <div class="proj-desc">Maintained sub-100ms latency under 5× traffic spikes. Used Kubernetes HPA and Triton for GPU batching. Handles <strong>500K+ daily interactions</strong>.</div>
+          <div class="proj-links"><a href="https://github.com/ypatodkar" target="_blank" class="proj-link">GitHub ↗</a></div>
         </div>
-        <div class="oss-meta">
-          <span class="oss-lang"><span class="oss-lang-dot" style="background:#dea584"></span>Rust</span>
-          <span class="oss-stars">★ 25.9k</span>
+      </div>
+
+      <div class="tl-item tl-left r" data-year="2025">
+        <div class="tl-card">
+          <div class="proj-top">
+            <span class="proj-name">Sports Analytics Platform</span>
+            <span class="proj-year">2025</span>
+          </div>
+          <div class="proj-stack">React · TypeScript · Gemini AI · AWS Lambda · Chart.js</div>
+          <div class="proj-desc">Replaced static datasets with Gemini Search Grounding for live data. 95% accuracy across 5 sports on Lambda, 99.9% uptime.</div>
+          <div class="proj-links"><a href="https://main.d3218t3euk8dbo.amplifyapp.com/" target="_blank" class="proj-link">Live Demo ↗</a></div>
         </div>
-        <p class="oss-desc">An incremental parsing system for programming tools — used by GitHub, Neovim, and Zed for fast, accurate syntax highlighting and code analysis across hundreds of languages. Built by the same team behind Zed and Atom. Actively exploring contributions.</p>
-        <div class="oss-links">
-          <a href="https://github.com/tree-sitter/tree-sitter" target="_blank" class="proj-link">Repo ↗</a>
-          <a href="https://github.com/ypatodkar/tree-sitter" target="_blank" class="proj-link">My fork ↗</a>
+        <div class="tl-node"><div class="tl-dot"></div><span class="tl-date">2025</span></div>
+        <div class="tl-spacer"></div>
+      </div>
+
+      <div class="tl-item tl-right r" data-year="2025">
+        <div class="tl-spacer"></div>
+        <div class="tl-node"><div class="tl-dot"></div><span class="tl-date">2025</span></div>
+        <div class="tl-card">
+          <div class="proj-top">
+            <span class="proj-name">Threat Detection System</span>
+            <span class="proj-year">2025</span>
+          </div>
+          <div class="proj-stack">React · Node.js · Express · PostgreSQL · AWS Lambda</div>
+          <div class="proj-desc">10 anomaly-detection rules across Zscaler and Nginx logs. Threats scored 0–1.0 with confidence levels for SOC triage.</div>
+          <div class="proj-links">
+            <a href="https://main.djqvks4i9xlkw.amplifyapp.com" target="_blank" class="proj-link">Live Demo ↗</a>
+            <a href="https://github.com/ypatodkar/threat-detection-zscaler" target="_blank" class="proj-link">GitHub ↗</a>
+          </div>
         </div>
+      </div>
+
+      <div class="tl-item tl-left r" data-year="2025">
+        <div class="tl-card">
+          <div class="proj-top">
+            <span class="proj-name">Resume Auto Editor</span>
+            <span class="proj-year">2025</span>
+          </div>
+          <div class="proj-stack">Python · Flask · React · Gemini AI · Google Docs API · OAuth 2.0</div>
+          <div class="proj-desc">Applied Gemini-suggested edits via the Google Docs API. Preserved spacing, fonts, and structure without breaking anything.</div>
+          <div class="proj-links">
+            <a href="https://main.d1hmnkmby0w01s.amplifyapp.com/" target="_blank" class="proj-link">Live Demo ↗</a>
+            <a href="https://github.com/ypatodkar/resume-auto-editor" target="_blank" class="proj-link">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="tl-node"><div class="tl-dot"></div><span class="tl-date">2025</span></div>
+        <div class="tl-spacer"></div>
+      </div>
+
+      <div class="tl-item tl-right r" data-year="2025">
+        <div class="tl-spacer"></div>
+        <div class="tl-node"><div class="tl-dot"></div><span class="tl-date">2025</span></div>
+        <div class="tl-card">
+          <div class="proj-top">
+            <span class="proj-name">Re‑Mind AI</span>
+            <span class="proj-year">2025</span>
+          </div>
+          <div class="proj-stack">Flask · React · Mistral LLM · ChromaDB · RAG · MongoDB</div>
+          <div class="proj-desc">On-device LLM with RAG over 5 psychiatric books. No API, no cloud — cognitive distortion detection. Matched ChatGPT on eval. <strong>Best Grad Hack, Hack for Humanity 2025.</strong></div>
+          <div class="proj-links"><a href="https://devpost.com/software/re-mind-ai" target="_blank" class="proj-link">Devpost ↗</a></div>
+        </div>
+      </div>
+
+      <div class="tl-item tl-left r" data-year="2024">
+        <div class="tl-card">
+          <div class="proj-top">
+            <span class="proj-name">GitHub PR Analyzer</span>
+            <span class="proj-year">2024</span>
+          </div>
+          <div class="proj-stack">Flask · React · LangChain · FAISS · NVIDIA Nemotron · GitHub API</div>
+          <div class="proj-desc">FAISS retrieval feeds the LLM only relevant diff context. 60% less manual review, 85% accuracy.</div>
+          <div class="proj-links"><a href="https://github.com/ypatodkar" target="_blank" class="proj-link">GitHub ↗</a></div>
+        </div>
+        <div class="tl-node"><div class="tl-dot"></div><span class="tl-date">2024</span></div>
+        <div class="tl-spacer"></div>
+      </div>
+
+      <div class="tl-item tl-right r" data-year="2024">
+        <div class="tl-spacer"></div>
+        <div class="tl-node"><div class="tl-dot"></div><span class="tl-date">2024</span></div>
+        <div class="tl-card">
+          <div class="proj-top">
+            <span class="proj-name">Presentation Suite</span>
+            <span class="proj-year">2024</span>
+          </div>
+          <div class="proj-stack">React · Gemini AI · Adobe Express API</div>
+          <div class="proj-desc">Prompt-engineered Gemini for coherent slide narratives, not just bullets. Built as an Adobe Express add-on. <strong>Hackathon Winner — Creators Corner.</strong></div>
+          <div class="proj-links"><a href="https://devpost.com/software/storytelling-powered-by-ai" target="_blank" class="proj-link">Devpost ↗</a></div>
+        </div>
+      </div>
+
+      <div class="tl-item tl-left r" data-year="2024">
+        <div class="tl-card">
+          <div class="proj-top">
+            <span class="proj-name">Ticket Booking Platform</span>
+            <span class="proj-year">2024</span>
+          </div>
+          <div class="proj-stack">Spring Boot · React · MySQL · Docker · Spring Security</div>
+          <div class="proj-desc">Solved double-booking under concurrency with optimistic DB locking. RBAC, seat selection, payment simulation, fully Dockerized.</div>
+          <div class="proj-links"><a href="https://youtu.be/K_dCg9T8tFA?t=68" target="_blank" class="proj-link">Demo ↗</a></div>
+        </div>
+        <div class="tl-node"><div class="tl-dot"></div><span class="tl-date">2024</span></div>
+        <div class="tl-spacer"></div>
       </div>
 
     </div>
@@ -643,125 +425,6 @@
       <blockquote class="thought-quote">
         "Use AI like an army of high-IQ interns. Not like an expert you're trying to catch being wrong."
       </blockquote>
-    </div>
-  </section>
-
-  <!-- ── PROJECTS ─────────────────────────────────────────── -->
-  <section class="section" id="projects">
-    <div class="sec-head r">
-      <span class="sec-label">Projects</span>
-      <div class="sec-line"></div>
-    </div>
-
-    <div class="ytabs r">
-      <button class="ytab active" data-year="all">All</button>
-      <button class="ytab" data-year="2026">2026</button>
-      <button class="ytab" data-year="2025">2025</button>
-      <button class="ytab" data-year="2024">2024</button>
-    </div>
-
-    <div class="proj-grid r">
-
-      <div class="proj-card feat" data-year="2026">
-        <div class="proj-left">
-          <div class="proj-top">
-            <span class="proj-name">Movie Recommendation System</span>
-            <span class="proj-year">2026</span>
-          </div>
-          <div class="proj-stack">Python · PyTorch · Kubernetes · Terraform · MLflow · Triton · Prometheus</div>
-          <div class="proj-desc">The hard part was keeping latency under 100ms during 5× traffic spikes without pre-scaling. Solved with Kubernetes HPA tuned to real request patterns and Triton for batched GPU inference. Handles <strong>500K+ daily interactions</strong>.</div>
-          <div class="proj-links">
-            <a href="https://github.com/ypatodkar" target="_blank" class="proj-link">GitHub ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-card" data-year="2025">
-        <div class="proj-top">
-          <span class="proj-name">Sports Analytics Platform</span>
-          <span class="proj-year">2025</span>
-        </div>
-        <div class="proj-stack">React · TypeScript · Gemini AI · AWS Lambda · Chart.js</div>
-        <div class="proj-desc">Sports stats go stale by the minute — used Gemini's Search Grounding to pull live data instead of a static dataset. 95% accuracy across 5 sports, serverless on Lambda, 99.9% uptime.</div>
-        <div class="proj-links">
-          <a href="https://main.d3218t3euk8dbo.amplifyapp.com/" target="_blank" class="proj-link">Live Demo ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card" data-year="2025">
-        <div class="proj-top">
-          <span class="proj-name">Threat Detection System</span>
-          <span class="proj-year">2025</span>
-        </div>
-        <div class="proj-stack">React · Node.js · Express · PostgreSQL · AWS Lambda</div>
-        <div class="proj-desc">Designing threat scoring that's useful — not just "is this bad?" but "how confident are we and why?" Built 10 anomaly-detection rules across Zscaler and Nginx logs, scoring 0–1.0 with confidence levels for SOC triage.</div>
-        <div class="proj-links">
-          <a href="https://main.djqvks4i9xlkw.amplifyapp.com" target="_blank" class="proj-link">Live Demo ↗</a>
-          <a href="https://github.com/ypatodkar/threat-detection-zscaler" target="_blank" class="proj-link">GitHub ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card" data-year="2025">
-        <div class="proj-top">
-          <span class="proj-name">Resume Auto Editor</span>
-          <span class="proj-year">2025</span>
-        </div>
-        <div class="proj-stack">Python · Flask · React · Gemini AI · Google Docs API · OAuth 2.0</div>
-        <div class="proj-desc">Google Docs formatting is notoriously fragile. The hard part was using the Docs API to apply AI-suggested edits without collapsing spacing, fonts, or section structure. Gemini extracts the keywords; the edits land cleanly.</div>
-        <div class="proj-links">
-          <a href="https://main.d1hmnkmby0w01s.amplifyapp.com/" target="_blank" class="proj-link">Live Demo ↗</a>
-          <a href="https://github.com/ypatodkar/resume-auto-editor" target="_blank" class="proj-link">GitHub ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card" data-year="2025">
-        <div class="proj-top">
-          <span class="proj-name">Re‑Mind AI</span>
-          <span class="proj-year">2025</span>
-        </div>
-        <div class="proj-stack">Flask · React · Mistral LLM · ChromaDB · RAG · MongoDB</div>
-        <div class="proj-desc">Running a capable LLM fully on-device — no API, no cloud — and getting it to reliably identify cognitive distortions was the core challenge. RAG over five psychiatric books kept it grounded. Matched ChatGPT on our eval. <strong>Best Grad Hack — Hack for Humanity 2025.</strong></div>
-        <div class="proj-links">
-          <a href="https://devpost.com/software/re-mind-ai" target="_blank" class="proj-link">Devpost ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card" data-year="2024">
-        <div class="proj-top">
-          <span class="proj-name">GitHub PR Analyzer</span>
-          <span class="proj-year">2024</span>
-        </div>
-        <div class="proj-stack">Flask · React · LangChain · FAISS · NVIDIA Nemotron · GitHub API</div>
-        <div class="proj-desc">The tricky part: giving the LLM enough codebase context to review a PR meaningfully without blowing the context window. Used FAISS to index the repo and retrieve only relevant files per diff. 60% less manual review, 85% accuracy.</div>
-        <div class="proj-links">
-          <a href="https://github.com/ypatodkar" target="_blank" class="proj-link">GitHub ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card" data-year="2024">
-        <div class="proj-top">
-          <span class="proj-name">Presentation Suite</span>
-          <span class="proj-year">2024</span>
-        </div>
-        <div class="proj-stack">React · Gemini AI · Adobe Express API</div>
-        <div class="proj-desc">Getting Gemini to produce a coherent slide narrative — not just bullet points — required careful prompt engineering around story arc and visual hierarchy. Built as an Adobe Express add-on. <strong>Hackathon Winner — Creators Corner.</strong></div>
-        <div class="proj-links">
-          <a href="https://devpost.com/software/storytelling-powered-by-ai" target="_blank" class="proj-link">Devpost ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card" data-year="2024">
-        <div class="proj-top">
-          <span class="proj-name">Ticket Booking Platform</span>
-          <span class="proj-year">2024</span>
-        </div>
-        <div class="proj-stack">Spring Boot · React · MySQL · Docker · Spring Security</div>
-        <div class="proj-desc">Preventing double-bookings under concurrent requests was the interesting problem — solved with optimistic locking at the DB level. RBAC, seat selection, payment simulation, fully containerized with Docker.</div>
-        <div class="proj-links">
-          <a href="https://youtu.be/K_dCg9T8tFA?t=68" target="_blank" class="proj-link">Demo ↗</a>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -913,37 +576,8 @@
   </div>
 </footer>
 
-<script>
-  // Year tab filtering
-  document.querySelectorAll('.ytab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.ytab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const year = tab.dataset.year;
-      document.querySelectorAll('[data-year]').forEach(card => {
-        card.classList.toggle('hidden', year !== 'all' && card.dataset.year !== year);
-      });
-    });
-  });
-
-  // Scroll reveal
-  const ro = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
-  }, { threshold: 0.06 });
-  document.querySelectorAll('.r').forEach(el => ro.observe(el));
-
-  // Scroll spy
-  document.querySelectorAll('section[id]').forEach(s => {
-    new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting)
-          document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
-            a.style.fontWeight = a.getAttribute('href') === '#' + e.target.id ? '700' : '';
-          });
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' }).observe(s);
-  });
-</script>
+<script src="script.js" defer></script>
+<script type="module" src="sketch3d.js"></script>
 
 </body>
 </html>
