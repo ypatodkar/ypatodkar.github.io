@@ -69,19 +69,6 @@ if (mv) {
   }
 }
 
-// ── Year tab filtering ────────────────────────────────────────
-document.querySelectorAll('.ytab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.ytab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    const year = tab.dataset.year;
-    document.querySelectorAll('.tl-item[data-year]').forEach(item => {
-      item.classList.toggle('hidden', year !== 'all' && item.dataset.year !== year);
-    });
-    updateTimelineLines();
-  });
-});
-
 // ── Scroll reveal ────────────────────────────────────────────
 const ro = new IntersectionObserver(entries => {
   entries.forEach(e => {
