@@ -16,7 +16,7 @@ const MAT = new THREE.MeshBasicMaterial({
   color: 0x8cc8f4,
   wireframe: true,
   transparent: true,
-  opacity: 0.066,
+  opacity: 0.05,
 });
 
 let mixer = null;
