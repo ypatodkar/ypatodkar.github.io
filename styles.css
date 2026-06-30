@@ -490,20 +490,19 @@ footer { position: relative; z-index: 2; }
 .tl-left.in  .tl-card { opacity: 1; transform: none; }
 .tl-item.in  .tl-node { opacity: 1; }
 
-/* ── PROJECTS: 2-column side-by-side grid ────────────────────── */
-#tl-projects {
+/* ── PROJECTS + HACKATHONS: 2-column side-by-side grid ──────── */
+#tl-projects, #tl-hackathons {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   max-width: none;
 }
-#tl-projects .tl-line,
-#tl-projects .tl-node,
-#tl-projects .tl-spacer { display: none; }
-#tl-projects .tl-item   { display: block; margin-bottom: 0; }
-#tl-projects .tl-card   { max-width: none; height: 100%; box-sizing: border-box; }
-#tl-projects .tl-right.r .tl-card,
-#tl-projects .tl-left.r  .tl-card { transform: translateY(14px); }
+#tl-projects .tl-line, #tl-projects .tl-node, #tl-projects .tl-spacer,
+#tl-hackathons .tl-line, #tl-hackathons .tl-node, #tl-hackathons .tl-spacer { display: none; }
+#tl-projects .tl-item, #tl-hackathons .tl-item   { display: block; margin-bottom: 0; }
+#tl-projects .tl-card, #tl-hackathons .tl-card   { max-width: none; height: 100%; box-sizing: border-box; }
+#tl-projects .tl-right.r .tl-card, #tl-projects .tl-left.r  .tl-card,
+#tl-hackathons .tl-right.r .tl-card, #tl-hackathons .tl-left.r .tl-card { transform: translateY(14px); }
 #tl-projects .proj-year { display: none; }
 
 @media (max-width: 640px) {
