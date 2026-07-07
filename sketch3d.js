@@ -45,8 +45,7 @@ new GLTFLoader().load('images/spiderman_-_mma_kick.glb', gltf => {
   model.position.sub(center);
 
   const group = new THREE.Group();
-  const s = 3.8 / maxDim;
-  group.scale.set(s, s * 0.75, s);
+  group.scale.setScalar((3.8 / maxDim) * 0.75);
   group.add(model);
   scene.add(group);
 
