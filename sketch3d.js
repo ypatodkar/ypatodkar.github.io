@@ -20,7 +20,7 @@ const MAT = new THREE.MeshBasicMaterial({
 });
 
 function syncOpacity() {
-  MAT.opacity = document.documentElement.getAttribute('data-theme') === 'dark' ? 0.05 : 0.1;
+  MAT.opacity = document.documentElement.getAttribute('data-theme') === 'dark' ? 0.05 : 0.2;
 }
 syncOpacity();
 new MutationObserver(syncOpacity).observe(document.documentElement, { attributeFilter: ['data-theme'] });
