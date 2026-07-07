@@ -6,7 +6,7 @@
   const ANGLE  = Math.PI / 10;   // lean: ~18° from vertical
   const adx    = Math.sin(ANGLE);
   const ady    = Math.cos(ANGLE);
-  const COUNT  = 160;
+  const COUNT  = 280;
 
   let W = 0, H = 0;
   const drops = [];
@@ -21,9 +21,9 @@
   function spawn(drop) {
     drop.x      = Math.random() * (W + 100) - 50;
     drop.y      = -Math.random() * H;
-    drop.len    = Math.random() * 18 + 8;
+    drop.len    = Math.random() * 22 + 10;
     drop.speed  = Math.random() * 6 + 4;
-    drop.alpha  = Math.random() * 0.35 + 0.1;
+    drop.alpha  = Math.random() * 0.45 + 0.3;
   }
 
   function init() {
@@ -32,20 +32,32 @@
     for (let i = 0; i < COUNT; i++) {
       const d = {};
       spawn(d);
-      d.y = Math.random() * H; // spread on first load
+      d.y = Math.random() * H;
       drops.push(d);
     }
   }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    ctx.lineWidth = 1;
 
     for (const d of drops) {
+      const x2 = d.x - adx * d.len;
+      const y2 = d.y - ady * d.len;
+
+      // outer glow / border
       ctx.beginPath();
       ctx.moveTo(d.x, d.y);
-      ctx.lineTo(d.x - adx * d.len, d.y - ady * d.len);
-      ctx.strokeStyle = `rgba(190,220,255,${d.alpha})`;
+      ctx.lineTo(x2, y2);
+      ctx.lineWidth   = 2.5;
+      ctx.strokeStyle = `rgba(190,220,255,${d.alpha * 0.3})`;
+      ctx.stroke();
+
+      // bright core
+      ctx.beginPath();
+      ctx.moveTo(d.x, d.y);
+      ctx.lineTo(x2, y2);
+      ctx.lineWidth   = 1;
+      ctx.strokeStyle = `rgba(220,235,255,${d.alpha})`;
       ctx.stroke();
 
       d.x += adx * d.speed;
