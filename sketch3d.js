@@ -19,6 +19,12 @@ const MAT = new THREE.MeshBasicMaterial({
   opacity: 0.05,
 });
 
+function syncOpacity() {
+  MAT.opacity = document.documentElement.getAttribute('data-theme') === 'dark' ? 0.05 : 0.075;
+}
+syncOpacity();
+new MutationObserver(syncOpacity).observe(document.documentElement, { attributeFilter: ['data-theme'] });
+
 let mixer = null;
 let clipAction = null;
 let clipDuration = 0;
