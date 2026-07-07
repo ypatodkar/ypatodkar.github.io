@@ -14,7 +14,7 @@
     localStorage.setItem('theme', theme);
   }
 
-  applyTheme(localStorage.getItem('theme') || 'light');
+  applyTheme('light');
 
   if (btn) btn.addEventListener('click', () =>
     applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')
