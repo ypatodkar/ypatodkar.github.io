@@ -46,20 +46,22 @@
 
 <!-- ══ HERO ═════════════════════════════════════════════════ -->
 <section class="hero">
-<canvas id="rain-canvas" aria-hidden="true"></canvas>
 
   <div class="hero-inner">
     <div class="hero-status ha a1"><span class="hero-dot"></span>Currently at Tenex.ai</div>
     <h1 class="hero-name ha a2">Yash Patodkar</h1>
 
-    <model-viewer
-      class="hero-3d ha a3"
-      src="images/shin-chan_and_shiro.glb"
-      interpolation-decay="0"
-      shadow-intensity="0"
-      exposure="1"
-      style="background: transparent; touch-action: none;">
-    </model-viewer>
+    <div class="hero-3d-wrap ha a3">
+      <canvas id="rain-canvas" aria-hidden="true"></canvas>
+      <model-viewer
+        class="hero-3d"
+        src="images/shin-chan_and_shiro.glb"
+        interpolation-decay="0"
+        shadow-intensity="0"
+        exposure="1"
+        style="background: transparent; touch-action: none;">
+      </model-viewer>
+    </div>
 
     <p class="hero-role ha a4">Software Engineer · 3+ years of experience</p>
     <p class="hero-role ha a4" style="margin-bottom:26px;">Open source contributor · Building multi-agent AI at Tenex.ai</p>
