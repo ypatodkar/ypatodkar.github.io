@@ -22,7 +22,7 @@
     drop.x      = Math.random() * (W + 100) - 50;
     drop.y      = -Math.random() * H;
     drop.len    = Math.random() * 22 + 10;
-    drop.speed  = Math.random() * 6 + 4;
+    drop.speed  = Math.random() * 4.2 + 2.8;
     drop.alpha  = Math.random() * 0.45 + 0.3;
   }
 
