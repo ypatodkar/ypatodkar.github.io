@@ -20,7 +20,7 @@ const MAT = new THREE.MeshBasicMaterial({
 });
 
 function syncOpacity() {
-  MAT.opacity = document.documentElement.getAttribute('data-theme') === 'dark' ? 0.05 : 0.075;
+  MAT.opacity = document.documentElement.getAttribute('data-theme') === 'dark' ? 0.05 : 0.1;
 }
 syncOpacity();
 new MutationObserver(syncOpacity).observe(document.documentElement, { attributeFilter: ['data-theme'] });
@@ -45,7 +45,8 @@ new GLTFLoader().load('images/spiderman_-_mma_kick.glb', gltf => {
   model.position.sub(center);
 
   const group = new THREE.Group();
-  group.scale.setScalar(3.8 / maxDim);
+  const s = 3.8 / maxDim;
+  group.scale.set(s, s * 0.75, s);
   group.add(model);
   scene.add(group);
 
