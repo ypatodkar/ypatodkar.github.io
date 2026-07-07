@@ -2,28 +2,55 @@
 
 /* ── DESIGN TOKENS ────────────────────────────────────────── */
 :root {
-  --bg:       #080a0d;
-  --bg2:      #0c1018;
-  --bg3:      #111822;
-  --text:     #f0e4c8;
-  --t2:       #b09878;
-  --t3:       #7a6448;
-  --border:   #2a1e10;
-  --accent:   #d4823c;
-  --accent-s: rgba(212,130,60,0.09);
-  --accent-m: rgba(212,130,60,0.2);
-  --green:    #34d399;
-  --green-s:  rgba(52,211,153,0.1);
+  /* Light mode (default) */
+  --bg:        #f2efe9;
+  --bg2:       #ebe7e0;
+  --bg3:       #e2ddd6;
+  --text:      #1a1a1a;
+  --t2:        #4a4a4a;
+  --t3:        #8a8880;
+  --border:    #cdc8c2;
+  --accent:    #950edb;
+  --accent-s:  rgba(149,14,219,0.08);
+  --accent-m:  rgba(149,14,219,0.18);
+  --accent-d:  #7209b7;
+  --green:     #22a86e;
+  --green-s:   rgba(34,168,110,0.12);
+  --nav-bg:    rgba(242,239,233,0.92);
+  --dot:       rgba(149,14,219,0.10);
+  --card-bg:   rgba(0,0,0,0.03);
+  --card-bg-h: rgba(0,0,0,0.055);
+}
+
+[data-theme="dark"] {
+  --bg:        #080a0d;
+  --bg2:       #0c1018;
+  --bg3:       #111822;
+  --text:      #f0e4c8;
+  --t2:        #b09878;
+  --t3:        #7a6448;
+  --border:    #2a1e10;
+  --accent:    #d4823c;
+  --accent-s:  rgba(212,130,60,0.09);
+  --accent-m:  rgba(212,130,60,0.2);
+  --accent-d:  #b86828;
+  --green:     #34d399;
+  --green-s:   rgba(52,211,153,0.1);
+  --nav-bg:    rgba(8,6,4,0.88);
+  --dot:       rgba(140,200,244,0.14);
+  --card-bg:   rgba(255,255,255,0.02);
+  --card-bg-h: rgba(255,255,255,0.04);
 }
 
 /* ── BASE ─────────────────────────────────────────────────── */
 html { scroll-behavior: smooth; }
+body { transition: background-color 0.25s, color 0.25s; }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px; line-height: 1.65;
   color: var(--text);
   background-color: var(--bg);
-  background-image: radial-gradient(circle, rgba(140,200,244,0.14) 1px, transparent 1px);
+  background-image: radial-gradient(circle, var(--dot) 1px, transparent 1px);
   background-size: 40px 40px;
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
@@ -33,7 +60,7 @@ a { color: var(--text); text-decoration: none; }
 /* ── NAV ──────────────────────────────────────────────────── */
 .nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(8,6,4,0.88);
+  background: var(--nav-bg);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
@@ -55,7 +82,7 @@ a { color: var(--text); text-decoration: none; }
   color: #fff !important;
   font-weight: 600 !important;
 }
-.nav-resume:hover { background: #b86828 !important; color: #fff !important; }
+.nav-resume:hover { background: var(--accent-d) !important; color: #fff !important; }
 
 /* ── HERO ─────────────────────────────────────────────────── */
 .hero {
@@ -120,7 +147,7 @@ a { color: var(--text); text-decoration: none; }
 }
 .hero-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-s); }
 .hero-link.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-.hero-link.primary:hover { background: #b86828; border-color: #b86828; color: #fff; }
+.hero-link.primary:hover { background: var(--accent-d); border-color: var(--accent-d); color: #fff; }
 .hero-link.icon-link { display: inline-flex; align-items: center; gap: 7px; }
 .hero-link.icon-link svg { flex-shrink: 0; }
 
@@ -460,7 +487,7 @@ footer { position: relative; z-index: 2; }
 }
 
 .tl-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--card-bg);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: none;
@@ -470,7 +497,7 @@ footer { position: relative; z-index: 2; }
   transition: background 0.2s;
 }
 .tl-card:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--card-bg-h);
 }
 
 .tl-spacer { display: none; }
@@ -522,6 +549,17 @@ footer { position: relative; z-index: 2; }
   .tl-left.r  .tl-card { transform: translateX(0); }
   .tl-line { left: 14px; transform: none; }
 }
+
+/* ── THEME TOGGLE ─────────────────────────────────────────── */
+.theme-toggle {
+  background: none; border: none; padding: 4px 6px;
+  cursor: pointer; display: flex; align-items: center;
+  color: var(--t2); border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+  font-size: 1rem; line-height: 1;
+}
+.theme-toggle:hover { color: var(--accent); background: var(--accent-s); }
+.theme-toggle svg { display: block; }
 
 /* ── FOOTER ───────────────────────────────────────────────── */
 footer { border-top: 1px solid var(--border); background: var(--bg3); }

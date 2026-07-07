@@ -1,3 +1,26 @@
+// ── Theme toggle (default: light) ────────────────────────────
+(function () {
+  const root   = document.documentElement;
+  const btn    = document.getElementById('theme-toggle');
+  const moon   = document.getElementById('icon-moon');
+  const sun    = document.getElementById('icon-sun');
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    if (moon && sun) {
+      moon.style.display = theme === 'dark' ? 'none'  : 'block';
+      sun.style.display  = theme === 'dark' ? 'block' : 'none';
+    }
+    localStorage.setItem('theme', theme);
+  }
+
+  applyTheme(localStorage.getItem('theme') || 'light');
+
+  if (btn) btn.addEventListener('click', () =>
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')
+  );
+})();
+
 // ── Model-viewer: free drag any direction, axis corrects after 1s
 const mv = document.querySelector('model-viewer');
 if (mv) {
