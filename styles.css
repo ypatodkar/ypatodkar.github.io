@@ -614,6 +614,7 @@ footer { border-top: 1px solid var(--border); background: var(--bg3); }
   .hero-3d-wrap { width: 100%; max-width: 100%; height: 300px; }
   .proj-grid { grid-template-columns: 1fr; }
   .proj-card.feat { grid-column: span 1; flex-direction: column; }
+  #tl-projects, #tl-hackathons { grid-template-columns: 1fr; }
   .sk-grid { grid-template-columns: 1fr; }
   .sk-cat { border-bottom: none; padding-bottom: 2px; }
   .edu-item { flex-direction: column; gap: 4px; }
@@ -621,4 +622,9 @@ footer { border-top: 1px solid var(--border); background: var(--bg3); }
   .contact-grid { grid-template-columns: 1fr; }
   .nav-inner, .wrap { padding-left: 16px; padding-right: 16px; }
   .exp-lhs { flex-wrap: wrap; gap: 4px; }
+
+  .nav-inner { height: auto; flex-wrap: wrap; row-gap: 8px; padding-top: 10px; padding-bottom: 10px; }
+  .nav-links { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .nav-links a { font-size: 0.76rem; padding: 4px 8px; }
+  .nav-name { font-size: 0.85rem; }
 }
