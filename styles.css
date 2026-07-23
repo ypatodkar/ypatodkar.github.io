@@ -92,7 +92,7 @@ a { color: var(--text); text-decoration: none; }
 }
 .hero-3d-wrap {
   position: relative;
-  width: 420px; height: 400px;
+  width: 210px; height: 200px;
   margin: 4px 0 16px;
   flex-shrink: 0;
 }
