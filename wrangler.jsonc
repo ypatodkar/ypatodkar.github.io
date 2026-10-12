@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ypatodkar",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    // Run the worker on every request so visits can be logged before the asset is served.
+    "run_worker_first": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ypatodkar-visits",
+      "database_id": "06684cee-2383-4c88-95e9-9ba41815893c"
+    }
+  ],
+  "routes": [
+    { "pattern": "ypatodkar.com/*", "zone_name": "ypatodkar.com" },
+    { "pattern": "www.ypatodkar.com/*", "zone_name": "ypatodkar.com" }
+  ],
+  // Daily cleanup of visits older than the retention window.
+  "triggers": { "crons": ["0 4 * * *"] }
+}
