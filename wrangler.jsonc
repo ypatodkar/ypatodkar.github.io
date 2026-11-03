@@ -20,6 +20,10 @@
     { "pattern": "ypatodkar.com/*", "zone_name": "ypatodkar.com" },
     { "pattern": "www.ypatodkar.com/*", "zone_name": "ypatodkar.com" }
   ],
+  // Contact form email; the address must be a verified Email Routing destination
+  "send_email": [
+    { "name": "CONTACT_EMAIL", "destination_address": "patodkaryash@gmail.com" }
+  ],
   // Daily cleanup of visits older than the retention window.
   "triggers": { "crons": ["0 4 * * *"] }
 }

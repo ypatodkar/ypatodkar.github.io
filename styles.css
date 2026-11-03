@@ -37,7 +37,7 @@
   --green:     #34d399;
   --green-s:   rgba(52,211,153,0.1);
   --nav-bg:    rgba(8,6,4,0.88);
-  --dot:       rgba(140,200,244,0.14);
+  --dot:       rgba(176,152,120,0.14);
   --card-bg:   rgba(255,255,255,0.02);
   --card-bg-h: rgba(255,255,255,0.04);
 }
@@ -440,6 +440,35 @@ footer { position: relative; z-index: 2; }
 .social-name { font-weight: 700; font-size: 0.92rem; color: var(--text); margin-bottom: 1px; }
 .social-handle { font-size: 0.78rem; color: var(--t3); }
 
+.contact-form { margin-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+.cf-intro { font-size: 0.94rem; color: var(--t2); }
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cf-field { display: flex; flex-direction: column; gap: 6px; }
+.cf-field span {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--t3);
+}
+.cf-field input, .cf-field textarea {
+  font: inherit; font-size: 0.92rem; color: var(--text);
+  background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 10px;
+  padding: 11px 14px; width: 100%; box-sizing: border-box;
+  transition: border-color 0.15s, background 0.15s;
+}
+.cf-field textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+.cf-field input:focus, .cf-field textarea:focus { outline: none; border-color: var(--accent); background: var(--accent-s); }
+.cf-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.cf-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.cf-send {
+  font: inherit; font-size: 0.88rem; font-weight: 600; color: #fff; cursor: pointer;
+  background: var(--accent); border: 1.5px solid var(--accent); border-radius: 8px;
+  padding: 10px 22px; transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+}
+.cf-send:hover { background: var(--accent-d); border-color: var(--accent-d); }
+.cf-send:disabled { opacity: 0.6; cursor: default; }
+.cf-status { font-size: 0.86rem; color: var(--t2); }
+.cf-status.ok { color: var(--green); }
+.cf-status.err { color: #d14343; }
+
 /* ── TIMELINE ─────────────────────────────────────────────── */
 .sec-label-lg {
   font-size: 1.7rem; font-weight: 700;
@@ -620,6 +649,7 @@ footer { border-top: 1px solid var(--border); background: var(--bg3); }
   .edu-item { flex-direction: column; gap: 4px; }
   .edu-r { text-align: left; }
   .contact-grid { grid-template-columns: 1fr; }
+  .cf-row { grid-template-columns: 1fr; }
   .nav-inner, .wrap { padding-left: 16px; padding-right: 16px; }
   .exp-lhs { flex-wrap: wrap; gap: 4px; }
 

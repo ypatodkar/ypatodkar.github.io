@@ -52,17 +52,25 @@ const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerH
 camera.position.set(0, 0, 5);
 
 const MAT = new THREE.MeshBasicMaterial({
-  color: 0x8cc8f4,
   wireframe: true,
   transparent: true,
   opacity: 0.05,
 });
 
-function syncOpacity() {
-  MAT.opacity = document.documentElement.getAttribute('data-theme') === 'dark' ? 0.05 : 0.2;
+// Draw in the theme's own ink (text colors in styles.css) like a pencil sketch, leaving purple for UI
+const INK = {
+  light: { color: '--t3', fallback: '#8a8880', opacity: 0.2 },
+  dark:  { color: '--t2', fallback: '#b09878', opacity: 0.08 },
+};
+
+function syncTheme() {
+  const root = document.documentElement;
+  const ink  = INK[root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'];
+  MAT.color.set(getComputedStyle(root).getPropertyValue(ink.color).trim() || ink.fallback);
+  MAT.opacity = ink.opacity;
 }
-syncOpacity();
-new MutationObserver(syncOpacity).observe(document.documentElement, { attributeFilter: ['data-theme'] });
+syncTheme();
+new MutationObserver(syncTheme).observe(document.documentElement, { attributeFilter: ['data-theme'] });
 
 let group = null;
 let modelSize = 1;

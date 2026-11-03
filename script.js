@@ -152,3 +152,34 @@ document.querySelectorAll('section[id]').forEach(s => {
     });
   }, { rootMargin: '-40% 0px -55% 0px' }).observe(s);
 });
+
+// ── Contact form ─────────────────────────────────────────────
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  const sendBtn = contactForm.querySelector('.cf-send');
+  const status  = contactForm.querySelector('.cf-status');
+
+  contactForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    sendBtn.disabled = true;
+    status.className = 'cf-status';
+    status.textContent = 'Sending…';
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+      contactForm.reset();
+      status.classList.add('ok');
+      status.textContent = "Thanks! Your message is on its way, and I'll reply by email.";
+    } catch (err) {
+      status.classList.add('err');
+      status.textContent = `${err.message} You can also reach me on LinkedIn.`;
+    } finally {
+      sendBtn.disabled = false;
+    }
+  });
+}
