@@ -363,8 +363,18 @@ footer { position: relative; z-index: 2; }
 }
 .proj-link:hover { color: var(--accent); }
 
+/* Frosted glass like the timeline cards, so text stays readable over the 3D model */
+.sk-grid, .edu-item, .recog-item, .social-card, .contact-form {
+  background: var(--card-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 16px;
+  transition: background 0.2s;
+}
+.edu-item:hover, .recog-item:hover { background: var(--card-bg-h); }
+
 /* ── SKILLS ───────────────────────────────────────────────── */
-.sk-grid { display: grid; grid-template-columns: 120px 1fr; }
+.sk-grid { display: grid; grid-template-columns: 140px 1fr; padding: 4px 22px; }
 .sk-row { display: contents; }
 .sk-cat {
   padding: 13px 0; border-bottom: 1px solid var(--border);
@@ -376,12 +386,12 @@ footer { position: relative; z-index: 2; }
 .sk-row:last-child .sk-cat, .sk-row:last-child .sk-val { border-bottom: none; }
 
 /* ── EDUCATION ────────────────────────────────────────────── */
-.edu-list { display: flex; flex-direction: column; }
+.edu-list { display: flex; flex-direction: column; gap: 12px; }
 .edu-item {
   display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
-  padding: 15px 0; border-bottom: 1px solid var(--border);
+  padding: 16px 18px;
 }
-.edu-item:first-child { border-top: 1px solid var(--border); }
+.edu-photo { align-items: center; gap: 18px; }
 .edu-deg { font-weight: 700; font-size: 0.9rem; margin-bottom: 3px; }
 .edu-sch { font-size: 0.82rem; color: var(--t2); }
 .edu-gpa {
@@ -393,12 +403,11 @@ footer { position: relative; z-index: 2; }
 .edu-r { text-align: right; flex-shrink: 0; font-size: 0.8rem; color: var(--t3); line-height: 1.6; }
 
 /* ── RECOGNITION ──────────────────────────────────────────── */
-.recog-list { display: flex; flex-direction: column; }
+.recog-list { display: flex; flex-direction: column; gap: 12px; }
 .recog-item {
   display: flex; align-items: flex-start; gap: 14px;
-  padding: 14px 0; border-bottom: 1px solid var(--border);
+  padding: 16px 18px;
 }
-.recog-item:first-child { border-top: 1px solid var(--border); }
 .recog-badge {
   flex-shrink: 0; margin-top: 1px; width: 34px; height: 34px; border-radius: 8px;
   background: var(--accent-s); border: 1px solid var(--accent-m);
@@ -430,17 +439,16 @@ footer { position: relative; z-index: 2; }
 .social-links { display: flex; gap: 12px; flex-wrap: wrap; }
 .social-card {
   display: flex; align-items: center; gap: 16px;
-  border: 1.5px solid var(--border); border-radius: 12px;
   padding: 16px 22px; flex: 1; min-width: 180px;
-  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
-.social-card:hover { border-color: var(--accent); background: var(--accent-s); transform: translateY(-2px); }
+.social-card:hover { background: var(--accent-s); transform: translateY(-2px); }
 .social-card svg { flex-shrink: 0; color: var(--text); transition: color 0.2s; }
 .social-card:hover svg { color: var(--accent); }
 .social-name { font-weight: 700; font-size: 0.92rem; color: var(--text); margin-bottom: 1px; }
 .social-handle { font-size: 0.78rem; color: var(--t3); }
 
-.contact-form { margin-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+.contact-form { margin-top: 28px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
 .cf-intro { font-size: 0.94rem; color: var(--t2); }
 .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .cf-field { display: flex; flex-direction: column; gap: 6px; }
@@ -646,7 +654,7 @@ footer { border-top: 1px solid var(--border); background: var(--bg3); }
   #tl-projects, #tl-hackathons { grid-template-columns: 1fr; }
   .sk-grid { grid-template-columns: 1fr; }
   .sk-cat { border-bottom: none; padding-bottom: 2px; }
-  .edu-item { flex-direction: column; gap: 4px; }
+  .edu-item { flex-direction: column; align-items: flex-start; gap: 4px; }
   .edu-r { text-align: left; }
   .contact-grid { grid-template-columns: 1fr; }
   .cf-row { grid-template-columns: 1fr; }
