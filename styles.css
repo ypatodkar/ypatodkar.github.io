@@ -247,12 +247,9 @@ footer { position: relative; z-index: 2; }
 .exp-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 
 /* ── WRITING ──────────────────────────────────────────────── */
-.post-card {
-  border: 1.5px solid var(--border); border-radius: 12px;
-  padding: 26px 30px;
-  transition: border-color 0.2s, transform 0.15s;
-}
-.post-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.post-card { padding: 26px 30px; }
+.post-card:hover { transform: translateY(-2px); }
+.post-card-link + .post-card-link { margin-top: 12px; }
 .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
 .post-tag {
   font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
@@ -268,9 +265,8 @@ footer { position: relative; z-index: 2; }
 .post-footer { margin-top: 16px; font-size: 0.78rem; color: var(--accent); font-weight: 600; }
 
 .thought-card {
-  border: 1.5px solid var(--border); border-radius: 12px;
   padding: 22px 28px; display: flex; flex-direction: column; gap: 10px;
-  transition: border-color 0.2s, transform 0.15s; margin-top: 12px;
+  margin-top: 12px;
 }
 .thought-label {
   font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
@@ -364,14 +360,14 @@ footer { position: relative; z-index: 2; }
 .proj-link:hover { color: var(--accent); }
 
 /* Frosted glass like the timeline cards, so text stays readable over the 3D model */
-.sk-grid, .edu-item, .recog-item, .social-card, .contact-form {
+.sk-grid, .edu-item, .recog-item, .social-card, .contact-form, .post-card, .thought-card {
   background: var(--card-bg);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-radius: 16px;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s;
 }
-.edu-item:hover, .recog-item:hover { background: var(--card-bg-h); }
+.edu-item:hover, .recog-item:hover, .post-card:hover { background: var(--card-bg-h); }
 
 /* ── SKILLS ───────────────────────────────────────────────── */
 .sk-grid { display: grid; grid-template-columns: 140px 1fr; padding: 4px 22px; }
