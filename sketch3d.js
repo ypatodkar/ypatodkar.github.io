@@ -59,8 +59,8 @@ const MAT = new THREE.MeshBasicMaterial({
 
 // Draw in the theme's own ink (text colors in styles.css) like a pencil sketch, leaving purple for UI
 const INK = {
-  light: { color: '--t3', fallback: '#8a8880', opacity: 0.2 },
-  dark:  { color: '--t2', fallback: '#b09878', opacity: 0.08 },
+  light: { color: '--t3', fallback: '#8a8880', opacity: 0.1 },
+  dark:  { color: '--t2', fallback: '#b09878', opacity: 0.04 },
 };
 
 function syncTheme() {
