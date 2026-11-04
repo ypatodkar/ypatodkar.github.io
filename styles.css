@@ -309,7 +309,7 @@ footer { position: relative; z-index: 2; }
 .oss-lang-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .oss-stars { font-size: 0.76rem; color: var(--t3); }
 .oss-desc { font-size: 0.875rem; color: var(--t2); line-height: 1.65; }
-.oss-links { display: flex; gap: 14px; }
+.oss-links { display: flex; flex-wrap: wrap; gap: 6px 14px; }
 
 .chip {
   font-size: 0.72rem; font-weight: 500; padding: 2px 9px; border-radius: 5px;
